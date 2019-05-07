@@ -25,5 +25,5 @@ public class UserDao {
 
     }
 
-    public User findUserByName(String name)
+    public User findUserByName(String name, )
 }
