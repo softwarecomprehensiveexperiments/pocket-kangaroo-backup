@@ -1,10 +1,12 @@
 package com.kangaroo.backup.Domain;
 
 import com.kangaroo.backup.Util.UtilDate;
-
 import java.util.Date;
 import java.util.Vector;
 
+/**
+ * PO/DO class.
+ */
 public class Task {
     private int taskId;
     private String taskTitle;
@@ -79,7 +81,7 @@ public class Task {
     public int getPublisherId() {
         return publisherId;
     }
-
+public void Vector<puncccccccccjenfas>
     public Vector<Integer> getReceiversId() {
         return receiversId;
     }
@@ -92,10 +94,10 @@ public class Task {
         return taskId;
     }
 
+
     public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
-
     public String getTaskTitle() {
         return taskTitle;
     }

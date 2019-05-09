@@ -1,12 +1,17 @@
 package com.kangaroo.backup.Dao;
 
 import com.kangaroo.backup.Domain.User;
+import org.springframework.stereotype.Repository;
+
+import java.util.Vector;
 
 /**
  * This is the Dao class for Users add and retrieve.
  */
+@Repository
 public class UsersManagerDao {
 
+    private static Vector<User> users = new Vector<>();
     /**
      * Add a new user
     @param phone (NOT-REPEATABLE) is a the combination of 13 digits number.
@@ -27,13 +32,14 @@ public class UsersManagerDao {
     public int getUserCountByNameAndPassword(String name, String password) {
         return 0;
     }
+
     /**
      * Get count of users by phone and password.
      * @param phone key to search
      * @param password key to search
      * @return result of retrieve(must be 0 or 1).
      */
-    public int getUserCountByPhone(String phone, String password) {
+    public int getUserCountByPhoneAndPassword(String phone, String password) {
         return 0;
     }
 
