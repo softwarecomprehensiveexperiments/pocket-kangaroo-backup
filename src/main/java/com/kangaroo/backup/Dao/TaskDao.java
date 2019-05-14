@@ -1,4 +1,8 @@
 package com.kangaroo.backup.Dao;
 
-public class TaskDao {
+import com.kangaroo.backup.Domain.Task;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TaskDao extends BaseDao<Task> {
 }

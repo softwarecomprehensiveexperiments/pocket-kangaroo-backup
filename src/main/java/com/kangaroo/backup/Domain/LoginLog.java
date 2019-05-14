@@ -2,7 +2,11 @@ package com.kangaroo.backup.Domain;
 
 import java.util.Date;
 
-public class LoginLog {
+/**
+ * PO/DO class.
+ */
+public class LoginLog extends BaseDomain {
+    private static final long serialVersionUID = 4526072973133579013L;
     private int loginLogId;
     private int userId;
     private String ip;
@@ -14,11 +18,11 @@ public class LoginLog {
         this.date = date;
     }
 
-    public int getLoginLogId() {
+    public int getId() {
         return loginLogId;
     }
 
-    public void setLoginLogId(int loginLogId) {
+    public void setId(int loginLogId) {
         this.loginLogId = loginLogId;
     }
 
