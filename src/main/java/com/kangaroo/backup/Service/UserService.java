@@ -2,8 +2,6 @@ package com.kangaroo.backup.Service;
 
 import com.kangaroo.backup.DTO.LoginCommandDTO;
 import com.kangaroo.backup.DTO.RegisterUserDTO;
-import com.kangaroo.backup.Dao.LoginLogDao;
-import com.kangaroo.backup.Dao.UserDao;
 import com.kangaroo.backup.Domain.LoginLog;
 import com.kangaroo.backup.Domain.User;
 import com.kangaroo.backup.Exception.UserExistException;

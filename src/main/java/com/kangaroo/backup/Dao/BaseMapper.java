@@ -4,24 +4,20 @@ import com.kangaroo.backup.Domain.BaseDomain;
 
 import java.util.List;
 
-public class BaseDao<T extends BaseDomain> {
+public interface BaseMapper {
 
     /**
      * Return all entities in the database.
      * @return list including all entities
      */
-    public List<T> loadAll() {
-        //todo
-    }
+    List<T> loadAll();
 
     /**
      * Add a new entity into database.
      * @param entity
      *        the entity to be added
      **/
-    public void save(T entity) {
-        //todo
-    }
+    void save(T entity);
 
     /**
      * Update information of a entity.
@@ -30,9 +26,7 @@ public class BaseDao<T extends BaseDomain> {
      * @param entity
      *        the entity after updating
      */
-    public void update(int id, T entity) {
-        //todo
-    }
+    void update(int id, T entity);
 
     /**
      * Get entity matching id.
@@ -40,16 +34,13 @@ public class BaseDao<T extends BaseDomain> {
      *        the key to find
      * @return the entity to find (null if doesn't exist)
      */
-    public T loadById(int id) {
-        //todo
-    }
+    T loadById(int id);
 
     /**
      * Remove a entity in the database.
      * @param entity
      *        the entity to be removed
      */
-    public void remove(T entity) {
-        //todo
-    }
+    void remove(T entity);
+
 }

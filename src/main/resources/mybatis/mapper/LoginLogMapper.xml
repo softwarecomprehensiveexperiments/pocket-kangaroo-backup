@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper>
+    <resultMap id="BaseLoginResultMap" type="com.kangaroo.backup.Domain.User">
+        <id column="loginLogId" property="loginLogId" jdbcType="INT"/>
+        <result column="userId" property="userId" jdbcType="INT"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_column_list">
+        loginLogId, userId, ip, date
+    </sql>
+
+    <select id="getLoginLog" resultMap="BaseLoginResultMap">
+        SELECT
+        <include refid="Base_column_list" />
+        FROM loginlog
+    </select>
+
+    <select id="getLoginLogByUserId" parameterType="int" resultMap="BaseLoginResultMap">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM loginlog WHERE userId = #{userId}
+    </select>
+
+    <select id="getLoginLogByIp" parameterType="String" resultMap="BaseLoginResultMap">
+        SELECT
+        <include refid="Base_column_list" />
+        FROM loginlog WHERE ip = #{ip}
+    </select>
+
+
+
+    <insert id="insert" parameterType="com.kangaroo.backup.Domain.LoginLog">
+        INSERT INTO
+            loginlog (loginLogId, userId, ip, date)
+        VALUES (#{loginLogId}, #{userId}, #{ip}, #{date})
+    </insert>
+
+    <update id="update" parameterType="com.kangaroo.backup.Domain.LoginLog">
+        UPDATE loginlog SET
+                         userId = #{userId},
+                         ip = #{ip},
+                         date = #{date}
+        WHERE loginLogId = #{loginLogId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM loginlog
+        WHERE loginLogId = #{loginLogId}
+    </delete>
+</mapper>

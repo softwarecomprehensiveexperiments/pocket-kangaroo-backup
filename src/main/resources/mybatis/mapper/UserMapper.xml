@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper>
+    <resultMap id="BaseResultMap" type="com.kangaroo.backup.Domain.User">
+        <id column="id" property="id" jdbcType="INT"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="properties" property="properties" jdbcType="INT"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="lastIP" property="lastIp" jdbcType="VARCHAR"/>
+        <result column="lastDate" property="lastDate" jdbcType="DATE"/>
+    </resultMap>
+    
+    <sql id="Base_column_list">
+        id, phone, name, sex, properties, icon, lastIP, lastDate
+    </sql>
+
+    <select id="loadAll" resultMap="BaseResultMap">
+        SELECT 
+        <include refid="Base_column_list"/>
+        FROM users
+    </select>
+    
+    <select id="loadByName" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_column_list" />
+        FROM users WHERE id = #{id}
+    </select>
+
+    <select id="loadByPhone" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_column_list" />
+        FROM users WHERE phone = #{phone}
+    </select>
+
+    <insert id="insert" parameterType="com.kangaroo.backup.Domain.User">
+        INSERT INTO
+            users (phone, name, password, sex)
+            VALUES (#{phone}, #{name}, #{password}, #{sex})
+    </insert>
+
+    <update id="update" parameterType="com.kangaroo.backup.Domain.User">
+        UPDATE users SET
+            phone = #{phone},
+            name = #{name},
+            password = #{password},
+            sex = #{sex}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM users
+        WHERE id = #{id}
+    </delete>
+</mapper>

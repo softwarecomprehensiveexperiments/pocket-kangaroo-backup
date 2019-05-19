@@ -11,6 +11,7 @@ public class KangarooBackupApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println("hello world!");
     }
 
 }
