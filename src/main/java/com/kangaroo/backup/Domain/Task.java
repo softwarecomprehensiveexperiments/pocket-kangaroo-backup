@@ -30,6 +30,7 @@ public class Task extends BaseDomain {
         public static final int RESOURCE_SHARE = 1;
         public static final int SURVEY = 2;
     }
+
     public class TaskState {
 
         public static final int NOT_RECEIVED = 0;
@@ -37,6 +38,7 @@ public class Task extends BaseDomain {
         public static final int COMPLETED_NORMALLY = 2;
         public static final int COMPLETED_OUT_OF_TIME = 3;
     }
+
     public Task(String taskTitle, int taskType, String taskContent, int price, int publisherId,
                 Date publishDate, Date deadLineDate) {
         this.taskTitle = taskTitle;
@@ -50,6 +52,7 @@ public class Task extends BaseDomain {
         this.deadLineDate = deadLineDate;
         this.state = TaskState.NOT_RECEIVED;
     }
+
 
 //移动到服务层
 //    public boolean addReceiver(User user) {
@@ -108,11 +111,11 @@ public class Task extends BaseDomain {
         this.publishDate = publishDate;
     }
 
-    public int getId() {
+    public int getTaskId() {
         return taskId;
     }
 
-    public void setId(int taskId) {
+    public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
 

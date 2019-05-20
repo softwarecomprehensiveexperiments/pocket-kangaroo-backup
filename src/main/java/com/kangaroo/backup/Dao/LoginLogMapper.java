@@ -4,7 +4,7 @@ import com.kangaroo.backup.Domain.LoginLog;
 
 import java.util.List;
 
-public interface LoginLogMapper {
+public interface LoginLogMapper  {
 
     List<LoginLog> getLoginLog();
 

@@ -1,6 +1,6 @@
 package com.kangaroo.backup.Utils;
 
-public class FormatChecker {
+public class FormatCheckerUtils {
     private static final String CHECK_TRANS_NAME_REGEX = "^[a-zA-Z][a-zA-Z0-9_]{5,13}$";
     private static final String MATCH_CHINESE_REGEX = "[\\u4e00-\\u9fa5]";
     private static final String CHECK_PASSWORD_REGEX = "(?=[a-zA-Z0-9!@#$%^&*]{8,16})^.*(?=([0-9](?=[a-zA-Z!@#$%^&*]))|([!@#$%^&*](?=[a-zA-Z0-9]))|([a-zA-Z](?=[0-9!@#$%^&*]))).*$";
@@ -25,6 +25,6 @@ public class FormatChecker {
         if(password == null || password.isEmpty()) {
             return true;
         }
-        return !password.matches(CHECK_PASSWORD_REGEX);
+        return password.matches(CHECK_PASSWORD_REGEX);
     }
 }

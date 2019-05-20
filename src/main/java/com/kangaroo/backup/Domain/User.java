@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class User extends BaseDomain {
     private static final long serialVersionUID = -9085312745591431751L;
-    private int id;
+    private int userId;
     private String phone;
     private String name;
     private String password;
@@ -32,12 +32,12 @@ public class User extends BaseDomain {
         this.lastIp = null;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {

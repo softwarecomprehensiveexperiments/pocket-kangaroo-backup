@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="com.kangaroo.backup.Dao">
     <resultMap id="BaseLoginResultMap" type="com.kangaroo.backup.Domain.User">
         <id column="loginLogId" property="loginLogId" jdbcType="INT"/>
         <result column="userId" property="userId" jdbcType="INT"/>

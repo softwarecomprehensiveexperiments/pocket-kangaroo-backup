@@ -50,4 +50,8 @@ public interface UserMapper {
      * @function find the user by id in DB and delete it
      */
     void delete(int id);
+/*
+    int getMatchPhoneAndPasswordCount(String phone, String password);
+    int getMatchNameAndPasswordCount(String name, String password);
+    User loadById(int id);*/
 }

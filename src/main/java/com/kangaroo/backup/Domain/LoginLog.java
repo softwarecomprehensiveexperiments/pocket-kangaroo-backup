@@ -18,11 +18,11 @@ public class LoginLog extends BaseDomain {
         this.date = date;
     }
 
-    public int getId() {
+    public int getLoginLogId() {
         return loginLogId;
     }
 
-    public void setId(int loginLogId) {
+    public void setLoginLogId(int loginLogId) {
         this.loginLogId = loginLogId;
     }
 

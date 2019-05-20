@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="com.kangaroo.backup.Dao">
     <resultMap id="BaseResultMap" type="com.kangaroo.backup.Domain.User">
         <id column="id" property="id" jdbcType="INT"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
@@ -22,13 +22,13 @@
         FROM users
     </select>
     
-    <select id="loadByName" parameterType="String" resultMap="BaseResultMap">
+    <select id="loadByName" parameterType="String" resultType="com.kangaroo.backup.Domain.User">
         SELECT
         <include refid="Base_column_list" />
-        FROM users WHERE id = #{id}
+        FROM users WHERE name = #{name}
     </select>
 
-    <select id="loadByPhone" parameterType="String" resultMap="BaseResultMap">
+    <select id="loadByPhone" parameterType="String" resultType="com.kangaroo.backup.Domain.User">
         SELECT
         <include refid="Base_column_list" />
         FROM users WHERE phone = #{phone}

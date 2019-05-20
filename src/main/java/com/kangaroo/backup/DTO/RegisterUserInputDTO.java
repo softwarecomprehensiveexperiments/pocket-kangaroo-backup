@@ -5,7 +5,7 @@ import com.kangaroo.backup.Domain.User;
 /**
  * DTO class for register operation.
  */
-public class RegisterUserDTO {
+public class RegisterUserInputDTO {
     private String phone;
     private String name;
     private String password;
