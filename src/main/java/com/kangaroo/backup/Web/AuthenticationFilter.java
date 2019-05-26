@@ -55,7 +55,7 @@ public class AuthenticationFilter extends BaseController implements Filter {
                 chain.doFilter(request, response);
             }
             else {
-                ((HttpServletResponse) response).sendError(81, "请登陆！");
+                ((HttpServletResponse) response).sendError(403, "未登陆，认证失败");
             }
         }
     }
