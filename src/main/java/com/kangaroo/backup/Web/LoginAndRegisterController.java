@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @RestController
@@ -52,7 +53,8 @@ public class LoginAndRegisterController extends BaseController {
     }
 
     @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public QueryResult<UserOutputDTO> login(@RequestBody LoginCommandDTO loginCommand, HttpServletRequest request) {
+    public QueryResult<UserOutputDTO> login(@RequestBody LoginCommandDTO loginCommand,
+                                            HttpServletRequest request, HttpServletResponse response) {
         logger.info("Login request received from " + request.getLocalAddr() + ".");
         QueryResult<UserOutputDTO> queryResult = new QueryResult<>();
         queryResult.setSuccess(false);
@@ -83,6 +85,7 @@ public class LoginAndRegisterController extends BaseController {
         BeanUtils.copyProperties(user, userOutputDTO);
         queryResult.setSuccess(true);
         queryResult.setT(userOutputDTO);
+
         return queryResult;
     }
 
