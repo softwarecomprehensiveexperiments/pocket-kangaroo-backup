@@ -5,6 +5,7 @@ import com.kangaroo.backup.Domain.User;
 import com.kangaroo.backup.Exception.UserExistException;
 import com.kangaroo.backup.Service.UserService;
 import com.kangaroo.backup.Utils.FormatCheckerUtils;
+import com.kangaroo.backup.Utils.JWTUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -85,7 +86,8 @@ public class LoginAndRegisterController extends BaseController {
         BeanUtils.copyProperties(user, userOutputDTO);
         queryResult.setSuccess(true);
         queryResult.setT(userOutputDTO);
-
+        String token = JWTUtils.getToken("{a}", "{a}");
+        response.setHeader("Token", token);
         return queryResult;
     }
 

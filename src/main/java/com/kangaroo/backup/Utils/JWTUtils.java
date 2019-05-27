@@ -26,8 +26,7 @@ public class JWTUtils {
         String preloadBase64 = Base64.encodeBase64URLSafeString(preloadJsonString.getBytes(StandardCharsets.UTF_8));
         String combine = headerBase64 + "." + preloadBase64;
         String signature = getSignature(combine);
-        String token = combine + "." + signature;
-        return token;
+        return combine + "." + signature;
     }
 
     //验证是否为合法token
@@ -38,15 +37,6 @@ public class JWTUtils {
         String[] s = token.split("\\.");
         String signature = getSignature(s[0] + "." + s[1]);
         return signature.equals(s[2]);
-    }
-
-    public static String test(@NotNull String token) {
-        if(!token.matches(CHECK_TOKEN_REGEX)) {
-            return "not regex";
-        }
-        String[] s = token.split("\\.");
-        String signature = getSignature(s[0] + "." + s[1]);
-        return signature;
     }
 
     //签名算法：HS256加密，Base64表示

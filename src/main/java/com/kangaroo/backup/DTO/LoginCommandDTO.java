@@ -1,7 +1,11 @@
 package com.kangaroo.backup.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LoginCommandDTO {
+
     private String key;
+
     private String password;
 
     public String getKey() {

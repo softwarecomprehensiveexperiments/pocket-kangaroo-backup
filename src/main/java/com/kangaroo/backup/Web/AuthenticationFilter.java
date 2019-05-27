@@ -22,10 +22,11 @@ public class AuthenticationFilter extends BaseController implements Filter {
         GREEN_URLS.add("/task/public");
         GREEN_URLS.add("/user/login");
         GREEN_URLS.add("/user/register");
+        GREEN_URLS.add("/in");
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
     }
 
@@ -55,7 +56,7 @@ public class AuthenticationFilter extends BaseController implements Filter {
                 chain.doFilter(request, response);
             }
             else {
-                ((HttpServletResponse) response).sendError(403, "未登陆，认证失败");
+                ((HttpServletResponse) response).sendError(403, "未登陆或登陆信息失效");
             }
         }
     }
