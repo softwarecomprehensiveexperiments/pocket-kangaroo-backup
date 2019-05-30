@@ -1,5 +1,8 @@
 package com.kangaroo.backup.Utils;
 
+/**
+ * 检测传输中一些字段格式的工具类
+ */
 public class FormatCheckerUtils {
 
     private static final String CHECK_TRANS_NAME_REGEX = "^[a-zA-Z][a-zA-Z0-9_]{5,13}$";

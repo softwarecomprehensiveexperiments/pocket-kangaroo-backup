@@ -19,9 +19,13 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtils {
 
     /**
-     * token 默认保质期
+     * token 默认保质期（30天）
      */
-    private static final long TOKEN_DURATION = TokenConstant.EXP_TIME / (1000 * 60 * 60 * 24);
+    private static final long TOKEN_DURATION_DAYS = TokenConstant.EXP_TIME / (1000 * 60 * 60 * 24);
+    /**
+     * 额外储存的时间（1天）
+     */
+    private static final long EXTEND_DURATION_DAYS = 1;
 
     @Autowired
     RedisTemplate<String, String> redisTemplate;
@@ -46,8 +50,8 @@ public class RedisUtils {
     public boolean appendTokenSetAuto(String id, String... v) {
         long suffix = LocalDate.now().toEpochDay();
         String key = id + suffix;
-        Long count = redisTemplate.opsForSet().add(key, v);
-        redisTemplate.expire("key", TOKEN_DURATION, TimeUnit.MILLISECONDS);
+        long count = redisTemplate.opsForSet().add(key, v);
+        redisTemplate.expire(key, TOKEN_DURATION_DAYS + EXTEND_DURATION_DAYS, TimeUnit.DAYS);
         return count > 0;
     }
 
@@ -63,17 +67,41 @@ public class RedisUtils {
 
     /**
      * 可自动回收token的查询接口，效率低，待改进
-     * @param id 目标集合
+     * @param id 目标集合的key
      * @param value 查询值
      * @return 存在返回true，否则false
      */
     public boolean isTokenInSetAuto(String id, String value) {
-        long
-        return redisTemplate.opsForSet().isMember(id, value);
+        long now = LocalDate.now().toEpochDay();
+        long index = 0;
+        while (index < TOKEN_DURATION_DAYS + 1) {
+            if (redisTemplate.opsForSet().isMember(id + (now - index), value)) {
+                return true;
+            }
+            index++;
+        }
+        return false;
     }
 
     public boolean deleteMemberSet(String id, String... v) {
         return redisTemplate.opsForSet().remove(id, v) > 0;
+    }
+
+    /**
+     * 删除接口
+     * @param id 目标集合的key
+     * @param v 待删除值
+     * @return 删除至少一条返回true，否则false
+     */
+    public boolean deleteTokenSetAuto(String id, String... v) {
+        int count = 0;
+        long now = LocalDate.now().toEpochDay();
+        long index = 0;
+        while (index < TOKEN_DURATION_DAYS + 1) {
+            count += redisTemplate.opsForSet().remove(id + (now - index), v);
+            index++;
+        }
+        return count != 0;
     }
 
     public boolean deleteSet(String id) {

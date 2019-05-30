@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+/**
+ * 负责登入、登出和注册的控制器类
+ */
 @RestController
 @RequestMapping(value = "/user", method = RequestMethod.POST)
 public class LoginAndRegisterController extends BaseController {
@@ -104,7 +107,7 @@ public class LoginAndRegisterController extends BaseController {
         String token = JWTUtils.getToken(TokenConstant.JWT_HEADER_STRING, JsonUtils.objToString(preload));
         response.setHeader("Authorization", token);
         //添加redis缓存
-        redisUtils.appendMemberSet(TokenConstant.REDIS_KEY, String.valueOf(preload.getJwtId()));
+        redisUtils.appendTokenSetAuto(TokenConstant.REDIS_KEY, String.valueOf(preload.getJwtId()));
         return queryResult;
     }
 
@@ -121,7 +124,7 @@ public class LoginAndRegisterController extends BaseController {
         String token = request.getHeader("Authorization");
         long id = JWTUtils.getPreloadId(token, TokenPreloadDTO.class);
         PureStateDTO pureStateDTO = new PureStateDTO();
-        pureStateDTO.setSuccess(redisUtils.deleteMemberSet(TokenConstant.REDIS_KEY, String.valueOf(id)));
+        pureStateDTO.setSuccess(redisUtils.deleteTokenSetAuto(TokenConstant.REDIS_KEY, String.valueOf(id)));
         return pureStateDTO;
     }
 }

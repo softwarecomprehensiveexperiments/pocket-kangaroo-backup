@@ -97,6 +97,26 @@ public class JWTUtils {
     }
 
     /**
+     * 得到token的userId(无校验过程)
+     * @param token 目标token
+     * @param clazz 用于封装属性的class
+     * @return 解析得到的userId
+     */
+    public static <T>int getUserId(String token, Class<T> clazz) {
+        String[] s = token.split("\\.");
+        String preloadString = new String(Base64.decodeBase64(s[1]), StandardCharsets.UTF_8);
+        T preload = JsonUtils.stringToObj(preloadString, clazz);
+        int id = -1;
+        try {
+            Method m = clazz.getMethod("getUserId");
+            id = (Integer) m.invoke(preload);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    /**
      * 签名算法：HS256加密，Base64表示
      * @param combine 由Header和preload两部分Base64编码组合成的字符串
      * @return 对应签名

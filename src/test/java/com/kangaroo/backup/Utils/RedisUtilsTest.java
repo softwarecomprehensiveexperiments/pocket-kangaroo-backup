@@ -31,4 +31,14 @@ public class RedisUtilsTest {
         System.out.println(what + "----------------------" + bet);
         Assert.assertFalse(redisUtils.isMemberInSet("null", "22"));
     }
+
+    @Test
+    public void opTokenTest() {
+        Assert.assertTrue(redisUtils.appendTokenSetAuto("token", "1waeaew", "asdasdasd"));
+        Assert.assertTrue(redisUtils.isTokenInSetAuto("token", "1waeaew"));
+        Assert.assertTrue(redisUtils.isTokenInSetAuto("token", "asdasdasd"));
+        Assert.assertTrue(redisUtils.deleteTokenSetAuto("token", "asdasdasd"));
+        Assert.assertTrue(redisUtils.isTokenInSetAuto("token", "1waeaew"));
+        Assert.assertFalse(redisUtils.isMemberInSet("token", "asdasdasd"));
+    }
 }

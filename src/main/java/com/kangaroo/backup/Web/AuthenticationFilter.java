@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 第一层过滤器，负责认证
+ */
 @WebFilter(urlPatterns = "/*", filterName = "authenticationFilter")
 public class AuthenticationFilter extends BaseController implements Filter {
 
@@ -59,7 +62,7 @@ public class AuthenticationFilter extends BaseController implements Filter {
             //是否为合法Token
             if(token != null && JWTUtils.checkToken(token, TokenPreloadDTO.class)) {
                 //是否在redis缓存中
-                if(redisUtils.isMemberInSet(TokenConstant.REDIS_KEY, String.valueOf(JWTUtils.getPreloadId(token, TokenPreloadDTO.class)))) {
+                if(redisUtils.isTokenInSetAuto(TokenConstant.REDIS_KEY, String.valueOf(JWTUtils.getPreloadId(token, TokenPreloadDTO.class)))) {
                     chain.doFilter(request, response);
                 }
                 else {
