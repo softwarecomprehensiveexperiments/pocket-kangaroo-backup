@@ -6,10 +6,15 @@ import java.util.Date;
  * PO/DO class.
  */
 public class LoginLog extends BaseDomain {
+
     private static final long serialVersionUID = 4526072973133579013L;
+
     private int loginLogId;
+
     private int userId;
+
     private String ip;
+
     private Date date;
 
     public LoginLog(String ip, int userId, Date date) {

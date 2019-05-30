@@ -2,14 +2,14 @@ package com.kangaroo.backup.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
+public class PureStateDTO {
 
-public class RegisterUserOutputDTO implements Serializable {
-    private static final long serialVersionUID = -345296694027717738L;
     @JsonProperty(value = "is_success")
     private boolean success;
+
     @JsonProperty(value = "error_code")
     private int errorCode;
+
     @JsonProperty(value = "description")
     private String description;
 

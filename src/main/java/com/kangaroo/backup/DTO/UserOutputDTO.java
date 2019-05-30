@@ -5,25 +5,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 public class UserOutputDTO implements Serializable {
+
     private static final long serialVersionUID = -3387275890406870339L;
+
     @JsonProperty(value = "user_id")
     private int id;
+
     @JsonProperty(value = "user_phone")
     private String phone;
+
     @JsonProperty(value = "user_name")
     private String name;
+
     @JsonProperty(value = "user_sex")
     private int sex;
+
     @JsonProperty(value = "user_properties")
     private int properties;
+
     @JsonProperty(value = "user_icon")
     private String icon;
+
     @JsonProperty(value = "user_completed_receive_task_count")
     private int userDoingReceiveTaskCount;
+
     @JsonProperty(value = "user_completed_release_task_count")
     private int userCompletedReceiveTaskCount;
+
     @JsonProperty(value = "user_doing_receive_task_count")
     private int userCompletedReleaseTaskCount;
+
     @JsonProperty(value = "user_doing_release_task_count")
     private int userDoingReleaseTaskCount;
 

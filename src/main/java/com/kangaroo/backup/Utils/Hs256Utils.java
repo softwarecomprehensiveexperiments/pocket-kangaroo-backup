@@ -5,6 +5,13 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 
 public class Hs256Utils {
+
+    /**
+     * HS256加密，内部默认使用utf-8编码表示字符串
+     * @param msg 待加密原始信息
+     * @param secret 密钥
+     * @return 加密后的二进制数
+     */
     public static byte[] encode(String msg, String secret) {
         byte[] output = null;
         try {

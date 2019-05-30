@@ -1,9 +1,13 @@
 package com.kangaroo.backup.Web;
 
+import com.kangaroo.backup.Constant.TokenConstant;
+import com.kangaroo.backup.DTO.TokenPreloadDTO;
 import com.kangaroo.backup.Utils.JWTUtils;
 import com.kangaroo.backup.Utils.MatchUriUtils;
+import com.kangaroo.backup.Utils.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -15,8 +19,14 @@ import java.util.Set;
 
 @WebFilter(urlPatterns = "/*", filterName = "authenticationFilter")
 public class AuthenticationFilter extends BaseController implements Filter {
+
+    @Autowired
+    private RedisUtils redisUtils;
+
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
+
     private FilterConfig filterConfig;
+
     private static final Set<String> GREEN_URLS = new HashSet<>();
     static {
         GREEN_URLS.add("/task/public");
@@ -45,18 +55,19 @@ public class AuthenticationFilter extends BaseController implements Filter {
         }
         else {
             logger.info("Url: " + ((HttpServletRequest) request).getRequestURI() + " being filtering.");
-            /*HttpSession session = httpServletRequest.getSession(true);
-            User user = (User)session.getAttribute("user");
-            if(user != null) chain.doFilter(request, response);
-            else {
-
-            }*/
-            String token = httpServletRequest.getHeader("Token");
-            if(token != null && JWTUtils.checkToken(token)) {
-                chain.doFilter(request, response);
+            String token = httpServletRequest.getHeader("Authorization");
+            //是否为合法Token
+            if(token != null && JWTUtils.checkToken(token, TokenPreloadDTO.class)) {
+                //是否在redis缓存中
+                if(redisUtils.isMemberInSet(TokenConstant.REDIS_KEY, String.valueOf(JWTUtils.getPreloadId(token, TokenPreloadDTO.class)))) {
+                    chain.doFilter(request, response);
+                }
+                else {
+                    httpServletResponse.sendError(403, "登陆信息已失效");
+                }
             }
             else {
-                ((HttpServletResponse) response).sendError(403, "未登陆或登陆信息失效");
+                httpServletResponse.sendError(403, "未登陆或登陆信息失效");
             }
         }
     }

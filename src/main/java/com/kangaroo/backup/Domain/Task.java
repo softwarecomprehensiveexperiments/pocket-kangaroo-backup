@@ -9,19 +9,30 @@ import java.util.Vector;
 /**
  * PO/DO class.
  */
-@EntityScan
 public class Task extends BaseDomain {
+
     private static final long serialVersionUID = -4841653072498200773L;
+
     private int taskId;
+
     private String taskTitle;
+
     private int taskType;
+
     private String taskContent;
+
     private int price;
+
     private int publisherId;
+
     private Vector<Integer> receiversId;
+
     private Date publishDate;
+
     private Date deadLineDate;
+
     private Date completeDate;
+
     private int state;
 
     public class TaskType {

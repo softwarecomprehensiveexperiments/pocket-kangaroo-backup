@@ -6,15 +6,25 @@ import java.util.Date;
  * PO/DO class.
  */
 public class User extends BaseDomain {
+
     private static final long serialVersionUID = -9085312745591431751L;
+
     private int userId;
+
     private String phone;
+
     private String name;
+
     private String password;
+
     private int sex;
+
     private int properties;
+
     private String icon;
+
     private String lastIp;
+
     private Date lastDate;
 
     public static class Sex {

@@ -22,6 +22,11 @@ public class KangarooBackupApplication {
     public String test() {
         return "HELLO. Kangaroo test.";
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testAuth() {
+        return "Auth pass.";
+    }
 }
 
 
