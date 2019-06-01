@@ -1,56 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kangaroo.backup.Dao">
-    <resultMap id="BaseResultMap" type="com.kangaroo.backup.Domain.User">
-        <id column="id" property="id" jdbcType="INT"/>
-        <result column="phone" property="phone" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="sex" property="sex" jdbcType="VARCHAR"/>
-        <result column="properties" property="properties" jdbcType="INT"/>
-        <result column="icon" property="icon" jdbcType="VARCHAR"/>
-        <result column="lastIP" property="lastIp" jdbcType="VARCHAR"/>
-        <result column="lastDate" property="lastDate" jdbcType="DATE"/>
-    </resultMap>
-    
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kangaroo.backup.Dao.UserMapper">
     <sql id="Base_column_list">
-        id, phone, name, sex, properties, icon, lastIP, lastDate
+        user_id, user_phone, user_name, user_sex, user_icon, user_properties, user_lastIp, user_lastDate
     </sql>
-
-    <select id="loadAll" resultMap="BaseResultMap">
-        SELECT 
+    <select id="loadAll" resultType="com.kangaroo.backup.Domain.User">
+        SELECT
         <include refid="Base_column_list"/>
-        FROM users
+        FROM kangaroo.users
     </select>
-    
     <select id="loadByName" parameterType="String" resultType="com.kangaroo.backup.Domain.User">
         SELECT
-        <include refid="Base_column_list" />
-        FROM users WHERE name = #{name}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.users WHERE user_name=#{userName}
     </select>
-
     <select id="loadByPhone" parameterType="String" resultType="com.kangaroo.backup.Domain.User">
         SELECT
-        <include refid="Base_column_list" />
-        FROM users WHERE phone = #{phone}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.users WHERE user_phone=#{userPhone}
     </select>
-
-    <insert id="insert" parameterType="com.kangaroo.backup.Domain.User">
-        INSERT INTO
-            users (phone, name, password, sex)
-            VALUES (#{phone}, #{name}, #{password}, #{sex})
+    <insert id="insert" parameterType="com.kangaroo.backup.Domain.User" useGeneratedKeys="true" keyProperty="userId"
+            keyColumn="user_id">
+        INSERT INTO kangaroo.users(user_phone, user_name, user_password, user_sex, user_icon, user_properties, user_lastIp, user_lastDate)
+        VALUES (#{userPhone},#{userName},#{userPassword},#{userSex},#{userIcon},#{userProperties},#{userLastIp},#{userLastDate})
     </insert>
-
     <update id="update" parameterType="com.kangaroo.backup.Domain.User">
-        UPDATE users SET
-            phone = #{phone},
-            name = #{name},
-            password = #{password},
-            sex = #{sex}
-        WHERE id = #{id}
+        UPDATE kangaroo.users
+        <set>
+            <if test="userPhone!=null">user_phone=#{userPhone},</if>
+            <if test="userName!=null">user_name=#{userName},</if>
+            <if test="userPassword!=null">user_password=#{userPassword},</if>
+            <if test="userSex!=null">user_sex=#{userSex},</if>
+            <if test="userIcon!=null">user_icon=#{userIcon},</if>
+            <if test="userProperties!=null">user_properties=#{userProperties},</if>
+            <if test="userLastIp!=null">user_lastIp=#{userLastIp},</if>
+            <if test="userLastDate!=null">user_lastDate=#{userLastDate}</if>
+        </set>
+        WHERE user_id=#{userId}
     </update>
-    
     <delete id="delete" parameterType="int">
-        DELETE FROM users
-        WHERE id = #{id}
+        DELETE FROM kangaroo.users
+        WHERE user_id=#{userId}
     </delete>
+    <select id="getMatchPhoneAndPasswordCount" resultType="int">
+        SELECT COUNT(user_name)
+        FROM kangaroo.users WHERE user_phone=#{0} AND user_password=#{1}
+    </select>
+    <select id="getMatchNameAndPasswordCount" resultType="int">
+        SELECT COUNT(user_name)
+        FROM kangaroo.users WHERE user_name=#{0} AND user_password=#{1}
+    </select>
+    <select id="loadById" resultType="com.kangaroo.backup.Domain.User">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM kangaroo.users WHERE user_id=#{userId}
+    </select>
 </mapper>

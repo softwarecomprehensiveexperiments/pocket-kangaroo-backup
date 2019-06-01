@@ -1,80 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kangaroo.backup.Dao">
-    <resultMap id="BaseTaskResultMap" type="com.kangaroo.backup.Domain.Task">
-        <id column="taskId" property="taskId" jdbcType="INT"/>
-        <result column="taskTitle" property="taskTitle" jdbcType="VARCHAR"/>
-        <result column="deadLineDate" property="deadLineDate" jdbcType="DATETIME"/>
-        <result column="taskContent" property="taskContent" jdbcType="TEXT"/>
-        <result column="price" property="price" jdbcType="INT"/>
-        <result column="publisherId" property="publisherId" jdbcType="INT"/>
-        <result column="receiversId" property="receiversId" jdbcType="VARCHAR"/>
-        <result column="publishDate" property="publishDate" jdbcType="DATE"/>
-        <result column="taskType" property="taskType" jdbcType="VARCHAR"/>
-        <result column="completeDate" property="completeDate" jdbcType="DATE"/>
-        <result column="state" property="state" jdbcType="INT"/>
-    </resultMap>
-
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kangaroo.backup.Dao.TaskMapper">
     <sql id="Base_column_list">
-        taskId, taskTitle, deadLineDate, taskContent, price, publisherId, receiversId, publishDate, taskType,
-        completeDate, state
+        task_id, task_title, task_deadLineDate, task_content, task_price, task_publisherId,
+        task_receiversId, task_publishDate, task_type, task_completeDate, task_state
     </sql>
-
-    <select id="getTaskList" resultMap="BaseTaskResultMap">
+    <select id="getTaskList" resultType="com.kangaroo.backup.Domain.Task">
         SELECT
         <include refid="Base_column_list"/>
-        FROM task
+        FROM kangaroo.task
     </select>
-
-    <select id="getTaskListByTitle" parameterType="String" resultMap="BaseTaskResultMap">
+    <select id="getTaskListByTitle" parameterType="String" resultType="com.kangaroo.backup.Domain.Task">
         SELECT
-        <include refid="Base_column_list" />
-        FROM task WHERE taskTitle = #{taskTitle}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.task WHERE task_title=#{taskTitle}
     </select>
-
-    <select id="getTaskListByType" parameterType="String" resultMap="BaseTaskResultMap">
+    <select id="getTaskListByType" parameterType="String" resultType="com.kangaroo.backup.Domain.Task">
         SELECT
-        <include refid="Base_column_list" />
-        FROM task WHERE taskType = #{taskType}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.task WHERE task_type=#{taskType}
     </select>
-
-    <select id="getTaskListByPublisher" parameterType="int" resultMap="BaseTaskResultMap">
+    <select id="getTaskListByPublisher" parameterType="int" resultType="com.kangaroo.backup.Domain.Task">
         SELECT
-        <include refid="Base_column_list" />
-        FROM task WHERE publisherId = #{publisherId}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.task WHERE task_publisherId=#{taskPublisherId}
     </select>
-
-
-    <select id="getTaskListByCompleteDate" parameterType="Date" resultMap="BaseTaskResultMap">
+    <select id="getTaskListByCompleteDate" parameterType="Date" resultType="com.kangaroo.backup.Domain.Task">
         SELECT
-        <include refid="Base_column_list" />
-        FROM task WHERE completeDate > #{completeDate} and completeDate = #{completeDate}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.task WHERE task_completeDate>=#{taskCompleteDate}
     </select>
-
-
-    <insert id="insertTask" parameterType="com.kangaroo.backup.Domain.Task">
-        INSERT INTO
-            task (taskId, taskTitle, deadLineDate, taskContent, price, publisherId, receiversId, publishDate, taskType, completeDate, state)
-        VALUES (#{taskId}, #{taskTitle}, #{deadLineDate}, #{taskContent}, #{price}, #{publisherId}, #{receiversId}, #{publishDate}, #{taskType}, #{completeDate}, #{state})
+    <insert id="insert" parameterType="com.kangaroo.backup.Domain.Task">
+        INSERT INTO kangaroo.task(task_title, task_deadLineDate, task_content, task_price, task_publisherId, task_receiversId, task_publishDate, task_type, task_completeDate, task_state)
+        VALUES (#{taskTitle},#{taskDeadLineDate},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskReceiversId},#{taskPublishDate},#{taskType},#{taskCompleteDate},#{taskSate})
     </insert>
-
-    <update id="updateTask" parameterType="com.kangaroo.backup.Domain.Task">
-        UPDATE task SET
-                         taskTitle = #{taskTitle},
-                         deadLineDate = #{deadLineDate},
-                         taskContent = #{taskContent},
-                         price = #{price},
-                         publisherId = #{publisherId},
-                         receiversId = #{receiversId},
-                         publishDate = #{publishDate},
-                         taskType = #{taskType},
-                         completeDate = #{completeDate},
-                         state = #{state}
-        WHERE taskId = #{taskId}
+    <update id="update" parameterType="com.kangaroo.backup.Domain.Task">
+        UPDATE kangaroo.task
+        <set>
+            <if test="taskTitle!=null">task_title=#{taskTitle},</if>
+            <if test="taskDeadLineDate!=null">task_deadLineDate=#{taskDeadLineDate},</if>
+            <if test="taskContent!=null">task_content=#{taskContent},</if>
+            <if test="taskPrice!=null">task_price=#{taskPrice},</if>
+            <if test="taskPublisherId!=null">task_publisherId=#{taskPublisherId},</if>
+            <if test="taskReceiversId!=null">task_receiversId=#{taskReceiversId},</if>
+            <if test="taskPublishDate!=null">task_publishDate=#{taskPublishDate},</if>
+            <if test="taskType!=null">task_type=#{taskType},</if>
+            <if test="taskCompleteDate!=null">task_completeDate=#{taskCompleteDate},</if>
+            <if test="taskSate!=null">task_state=#{taskSate}</if>
+        </set>
+        WHERE task_id=#{taskId}
     </update>
-
-    <delete id="deleteTask" parameterType="int">
-        DELETE FROM task
-        WHERE taskId = #{taskId}
+    <delete id="delete" parameterType="int">
+        DELETE FROM kangaroo.task
+        WHERE task_id=#{taskId}
     </delete>
 </mapper>

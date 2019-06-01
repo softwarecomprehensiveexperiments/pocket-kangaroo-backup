@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kangaroo.backup.Dao">
-    <resultMap id="BaseLoginResultMap" type="com.kangaroo.backup.Domain.User">
-        <id column="loginLogId" property="loginLogId" jdbcType="INT"/>
-        <result column="userId" property="userId" jdbcType="INT"/>
-        <result column="ip" property="ip" jdbcType="VARCHAR"/>
-        <result column="date" property="date" jdbcType="DATE"/>
-    </resultMap>
-
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kangaroo.backup.Dao.LoginLogMapper">
     <sql id="Base_column_list">
-        loginLogId, userId, ip, date
+        loginLog_id, loginLog_userId, loginLog_ip, loginLog_date
     </sql>
-
-    <select id="getLoginLog" resultMap="BaseLoginResultMap">
-        SELECT
-        <include refid="Base_column_list" />
-        FROM loginlog
-    </select>
-
-    <select id="getLoginLogByUserId" parameterType="int" resultMap="BaseLoginResultMap">
+    <select id="getLoginLog" resultType="com.kangaroo.backup.Domain.LoginLog">
         SELECT
         <include refid="Base_column_list"/>
-        FROM loginlog WHERE userId = #{userId}
+        FROM kangaroo.loginlog
     </select>
-
-    <select id="getLoginLogByIp" parameterType="String" resultMap="BaseLoginResultMap">
+    <select id="getLoginLogByUserId" parameterType="int" resultType="com.kangaroo.backup.Domain.LoginLog">
         SELECT
-        <include refid="Base_column_list" />
-        FROM loginlog WHERE ip = #{ip}
+        <include refid="Base_column_list"/>
+        FROM kangaroo.loginlog WHERE loginLog_userId=#{loginLogUserId}
     </select>
-
-
-
+    <select id="getLoginLogByIp" parameterType="int" resultType="com.kangaroo.backup.Domain.LoginLog">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM kangaroo.loginlog WHERE loginLog_ip=#{loginLogIp}
+    </select>
     <insert id="insert" parameterType="com.kangaroo.backup.Domain.LoginLog">
-        INSERT INTO
-            loginlog (loginLogId, userId, ip, date)
-        VALUES (#{loginLogId}, #{userId}, #{ip}, #{date})
+        INSERT INTO kangaroo.loginlog(loginLog_userId, loginLog_ip, loginLog_date)
+        VALUES (#{loginLogUserId},#{loginLogIp},#{loginLogDate})
     </insert>
-
     <update id="update" parameterType="com.kangaroo.backup.Domain.LoginLog">
-        UPDATE loginlog SET
-                         userId = #{userId},
-                         ip = #{ip},
-                         date = #{date}
-        WHERE loginLogId = #{loginLogId}
+        UPDATE kangaroo.loginlog
+        <set>
+            <if test="loginLogUserId!=null">loginLog_userId=#{loginLogUserId},</if>
+            <if test="loginLogIp!=null">loginLog_ip=#{loginLogIp},</if>
+            <if test="loginLogDate!=null">loginLog_date=#{loginLogDate}</if>
+        </set>
+        WHERE loginLog_id=#{loginLogId}
     </update>
-
     <delete id="delete" parameterType="int">
-        DELETE FROM loginlog
-        WHERE loginLogId = #{loginLogId}
+        DELETE FROM kangaroo.loginlog
+        WHERE loginLog_id=#{loginLogId}
     </delete>
 </mapper>
