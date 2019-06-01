@@ -1,9 +1,11 @@
 package com.kangaroo.backup.Dao;
 
 import com.kangaroo.backup.Domain.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserMapper {
 
     /**
@@ -19,7 +21,7 @@ public interface UserMapper {
      *        the key to find.
      * @return the user find (null if doesn't exist).
      */
-    User loadByName(String name);
+    User loadByName(String userName);
 
     /**
      * Get User matching phone.
@@ -27,7 +29,7 @@ public interface UserMapper {
      *        the key to find.
      * @return the user find (null if doesn't exist).
      */
-    User loadByPhone(String phone);
+    User loadByPhone(String usrPhone);
 
     /**
     * @param user
@@ -49,9 +51,9 @@ public interface UserMapper {
      *       the id of the user to be delete
      * @function find the user by id in DB and delete it
      */
-    void delete(int id);
-/*
-    int getMatchPhoneAndPasswordCount(String phone, String password);
-    int getMatchNameAndPasswordCount(String name, String password);
-    User loadById(int id);*/
+    void delete(int userId);
+
+    int getMatchPhoneAndPasswordCount(String userPhone, String userPassword);
+    int getMatchNameAndPasswordCount(String userName, String userPassword);
+    User loadById(int userId);
 }

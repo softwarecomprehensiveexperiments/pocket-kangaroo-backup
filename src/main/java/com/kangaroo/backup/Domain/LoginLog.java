@@ -6,21 +6,16 @@ import java.util.Date;
  * PO/DO class.
  */
 public class LoginLog extends BaseDomain {
-
     private static final long serialVersionUID = 4526072973133579013L;
-
     private int loginLogId;
+    private int loginLogUserId;
+    private String loginLogIp;
+    private Date loginLogDate;
 
-    private int userId;
-
-    private String ip;
-
-    private Date date;
-
-    public LoginLog(String ip, int userId, Date date) {
-        this.ip = ip;
-        this.userId = userId;
-        this.date = date;
+    public LoginLog(String loginLogIp, int loginLogUserId, Date loginLogDate) {
+        this.loginLogIp = loginLogIp;
+        this.loginLogUserId = loginLogUserId;
+        this.loginLogDate = loginLogDate;
     }
 
     public int getLoginLogId() {
@@ -31,27 +26,27 @@ public class LoginLog extends BaseDomain {
         this.loginLogId = loginLogId;
     }
 
-    public String getIp() {
-        return ip;
+    public String getLoginLogIp() {
+        return loginLogIp;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setLoginLogIp(String loginLogIp) {
+        this.loginLogIp = loginLogIp;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getLoginLogUserId() {
+        return loginLogUserId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setLoginLogUserId(int loginLogUserId) {
+        this.loginLogUserId = loginLogUserId;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getLoginLogDate() {
+        return loginLogDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setLoginLogDate(Date loginLogDate) {
+        this.loginLogDate = loginLogDate;
     }
 }

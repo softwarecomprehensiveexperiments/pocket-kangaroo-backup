@@ -9,31 +9,22 @@ import java.util.Vector;
 /**
  * PO/DO class.
  */
+@EntityScan
 public class Task extends BaseDomain {
-
     private static final long serialVersionUID = -4841653072498200773L;
-
     private int taskId;
-
     private String taskTitle;
-
-    private int taskType;
-
+    private Date taskDeadLineDate;
     private String taskContent;
-
-    private int price;
-
-    private int publisherId;
-
-    private Vector<Integer> receiversId;
-
-    private Date publishDate;
-
-    private Date deadLineDate;
-
-    private Date completeDate;
-
-    private int state;
+    private int taskPrice;
+    private int taskPublisherId;
+    //taskReceiversId由Vector类型改为String类型，类似："12354&448936$65484"，便于数据库存储操作
+//    private Vector<Integer> taskReceiversId;
+    private String taskReceiversId;
+    private Date taskPublishDate;
+    private int taskType;
+    private Date taskCompleteDate;
+    private int taskState;
 
     public class TaskType {
 
@@ -50,18 +41,19 @@ public class Task extends BaseDomain {
         public static final int COMPLETED_OUT_OF_TIME = 3;
     }
 
-    public Task(String taskTitle, int taskType, String taskContent, int price, int publisherId,
-                Date publishDate, Date deadLineDate) {
+    public Task(String taskTitle, int taskType, String taskContent, int taskPrice, int taskPublisherId, String taskReceiversId,
+                Date taskPublishDate, Date taskDeadLineDate) {
         this.taskTitle = taskTitle;
         this.taskType = taskType;
         this.taskContent = taskContent;
-        this.price = price;
-        this.publisherId = publisherId;
-        this.receiversId = new Vector<>();
-        this.publishDate = publishDate;
-        this.completeDate = DateConstant.NULL_DATE;
-        this.deadLineDate = deadLineDate;
-        this.state = TaskState.NOT_RECEIVED;
+        this.taskPrice = taskPrice;
+        this.taskPublisherId = taskPublisherId;
+//        this.taskReceiversId = new Vector<>();
+        this.taskReceiversId = taskReceiversId;
+        this.taskPublishDate = taskPublishDate;
+        this.taskCompleteDate = DateConstant.NULL_DATE;
+        this.taskDeadLineDate = taskDeadLineDate;
+        this.taskState = TaskState.NOT_RECEIVED;
     }
 
 
@@ -98,28 +90,35 @@ public class Task extends BaseDomain {
 //    }
 
 
-    public int getPublisherId() {
-        return publisherId;
+    public int getTaskPublisherId() {
+        return taskPublisherId;
     }
 
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
+    public void setTaskPublisherId(int taskPublisherId) {
+        this.taskPublisherId = taskPublisherId;
     }
 
-    public Vector<Integer> getReceiversId() {
-        return receiversId;
+//    public Vector<Integer> getTaskReceiversId() {
+//        return taskReceiversId;
+//    }
+
+//    public void setTaskReceiversId(Vector<Integer> taskReceiversId) {
+//        this.taskReceiversId = taskReceiversId;
+//    }
+
+    public String getTaskReceiversId() {
+        return taskReceiversId;
+    }
+    public void setTaskReceiversId(String taskReceiversId) {
+        this.taskReceiversId = taskReceiversId;
     }
 
-    public void setReceiversId(Vector<Integer> receiversId) {
-        this.receiversId = receiversId;
+    public Date getTaskPublishDate() {
+        return taskPublishDate;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
-    }
-
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setTaskPublishDate(Date taskPublishDate) {
+        this.taskPublishDate = taskPublishDate;
     }
 
     public int getTaskId() {
@@ -154,35 +153,35 @@ public class Task extends BaseDomain {
         this.taskContent = taskContent;
     }
 
-    public int getPrice() {
-        return price;
+    public int getTaskPrice() {
+        return taskPrice;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setTaskPrice(int taskPrice) {
+        this.taskPrice = taskPrice;
     }
 
-    public Date getDeadLineDate() {
-        return deadLineDate;
+    public Date getTaskDeadLineDate() {
+        return taskDeadLineDate;
     }
 
-    public void setDeadLineDate(Date deadLineDate) {
-        this.deadLineDate = deadLineDate;
+    public void setTaskDeadLineDate(Date taskDeadLineDate) {
+        this.taskDeadLineDate = taskDeadLineDate;
     }
 
-    public Date getCompleteDate() {
-        return completeDate;
+    public Date getTaskCompleteDate() {
+        return taskCompleteDate;
     }
 
-    public void setCompleteDate(Date completeDate) {
-        this.completeDate = completeDate;
+    public void setTaskCompleteDate(Date taskCompleteDate) {
+        this.taskCompleteDate = taskCompleteDate;
     }
 
-    public int getState() {
-        return state;
+    public int getTaskState() {
+        return taskState;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setTaskState(int taskState) {
+        this.taskState = taskState;
     }
 }

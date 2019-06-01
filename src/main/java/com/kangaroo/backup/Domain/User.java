@@ -6,40 +6,30 @@ import java.util.Date;
  * PO/DO class.
  */
 public class User extends BaseDomain {
-
     private static final long serialVersionUID = -9085312745591431751L;
-
     private int userId;
-
-    private String phone;
-
-    private String name;
-
-    private String password;
-
-    private int sex;
-
-    private int properties;
-
-    private String icon;
-
-    private String lastIp;
-
-    private Date lastDate;
+    private String userPhone;
+    private String userName;
+    private String userPassword;
+    private int userSex;
+    private int userProperties;
+    private String userIcon;
+    private String userLastIp;
+    private Date userLastDate;
 
     public static class Sex {
         public static final int BOY = 0;
         public static final int GIRL = 1;
     }
 
-    public User(String phone, String name, String password, int sex) {
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
-        this.sex = sex;
-        this.properties = 0;
-        this.icon = null;
-        this.lastIp = null;
+    public User(String userPhone, String userName, String userPassword, int userSex) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userPhone = userPhone;
+        this.userSex = userSex;
+        this.userProperties = 0;
+        this.userIcon = null;
+        this.userLastIp = null;
     }
 
     public int getUserId() {
@@ -51,66 +41,66 @@ public class User extends BaseDomain {
     }
 
     public String getName() {
-        return name;
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return password;
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getPhone() {
-        return phone;
+        return userPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     public int getSex() {
-        return sex;
+        return userSex;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setSex(int userSex) {
+        this.userSex = userSex;
     }
 
     public int getProperties() {
-        return properties;
+        return userProperties;
     }
 
-    public void setProperties(int properties) {
-        this.properties = properties;
+    public void setProperties(int userProperties) {
+        this.userProperties = userProperties;
     }
 
     public String getIcon() {
-        return icon;
+        return userIcon;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setIcon(String userIcon) {
+        this.userIcon = userIcon;
     }
 
     public String getLastIp() {
-        return lastIp;
+        return userLastIp;
     }
 
-    public void setLastIp(String lastIp) {
-        this.lastIp = lastIp;
+    public void setLastIp(String userLastIp) {
+        this.userLastIp = userLastIp;
     }
 
     public Date getLastDate() {
-        return lastDate;
+        return userLastDate;
     }
 
-    public void setLastDate(Date lastDate) {
-        this.lastDate = lastDate;
+    public void setLastDate(Date userLastDate) {
+        this.userLastDate = userLastDate;
     }
 }
