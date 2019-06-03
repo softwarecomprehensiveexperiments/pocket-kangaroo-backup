@@ -46,11 +46,11 @@
     </delete>
     <select id="getMatchPhoneAndPasswordCount" resultType="int">
         SELECT COUNT(user_name)
-        FROM kangaroo.users WHERE user_phone=#{0} AND user_password=#{1}
+        FROM kangaroo.users WHERE user_phone=#{userPhone} AND user_password=#{userPassword}
     </select>
     <select id="getMatchNameAndPasswordCount" resultType="int">
         SELECT COUNT(user_name)
-        FROM kangaroo.users WHERE user_name=#{0} AND user_password=#{1}
+        FROM kangaroo.users WHERE user_name=#{userName} AND user_password=#{userPassword}
     </select>
     <select id="loadById" resultType="com.kangaroo.backup.Domain.User">
         SELECT

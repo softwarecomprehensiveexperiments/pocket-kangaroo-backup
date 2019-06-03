@@ -24,7 +24,6 @@ create table task
     task_content  text         null,
     task_price        int          not null,
     task_publisherId  int          not null,
-    task_receiversId  varchar(128) null,
     task_publishDate  datetime     not null,
     task_type     varchar(32)  null,
     task_completeDate date         not null,
@@ -38,6 +37,5 @@ create table loginlog
     loginLog_userId     int          not null,
     loginLog_ip         varchar(128) not null,
     loginLog_date       date         not null,
-    primary key (loginLog_id),
-    unique (loginLog_userId)
+    primary key (loginLog_id)
 )engine=InnoDB auto_increment=1 default charset=utf8;

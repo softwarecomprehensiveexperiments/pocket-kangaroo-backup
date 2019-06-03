@@ -5,7 +5,7 @@
 <mapper namespace="com.kangaroo.backup.Dao.TaskMapper">
     <sql id="Base_column_list">
         task_id, task_title, task_deadLineDate, task_content, task_price, task_publisherId,
-        task_receiversId, task_publishDate, task_type, task_completeDate, task_state
+        task_publishDate, task_type, task_completeDate, task_state
     </sql>
     <select id="getTaskList" resultType="com.kangaroo.backup.Domain.Task">
         SELECT
@@ -33,8 +33,8 @@
         FROM kangaroo.task WHERE task_completeDate>=#{taskCompleteDate}
     </select>
     <insert id="insert" parameterType="com.kangaroo.backup.Domain.Task">
-        INSERT INTO kangaroo.task(task_title, task_deadLineDate, task_content, task_price, task_publisherId, task_receiversId, task_publishDate, task_type, task_completeDate, task_state)
-        VALUES (#{taskTitle},#{taskDeadLineDate},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskReceiversId},#{taskPublishDate},#{taskType},#{taskCompleteDate},#{taskSate})
+        INSERT INTO kangaroo.task(task_title, task_deadLineDate, task_content, task_price, task_publisherId, task_publishDate, task_type, task_completeDate, task_state)
+        VALUES (#{taskTitle},#{taskDeadLineDate},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskPublishDate},#{taskType},#{taskCompleteDate},#{taskSate})
     </insert>
     <update id="update" parameterType="com.kangaroo.backup.Domain.Task">
         UPDATE kangaroo.task
@@ -44,7 +44,6 @@
             <if test="taskContent!=null">task_content=#{taskContent},</if>
             <if test="taskPrice!=null">task_price=#{taskPrice},</if>
             <if test="taskPublisherId!=null">task_publisherId=#{taskPublisherId},</if>
-            <if test="taskReceiversId!=null">task_receiversId=#{taskReceiversId},</if>
             <if test="taskPublishDate!=null">task_publishDate=#{taskPublishDate},</if>
             <if test="taskType!=null">task_type=#{taskType},</if>
             <if test="taskCompleteDate!=null">task_completeDate=#{taskCompleteDate},</if>

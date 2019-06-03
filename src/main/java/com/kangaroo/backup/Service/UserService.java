@@ -2,8 +2,8 @@ package com.kangaroo.backup.Service;
 
 import com.kangaroo.backup.DTO.LoginCommandDTO;
 import com.kangaroo.backup.DTO.RegisterUserInputDTO;
+import com.kangaroo.backup.DTO.UpdateUserDTO;
 import com.kangaroo.backup.Dao.LoginLogMapper;
-import com.kangaroo.backup.Dao.UserDao;
 import com.kangaroo.backup.Dao.UserMapper;
 import com.kangaroo.backup.Domain.LoginLog;
 import com.kangaroo.backup.Domain.User;
@@ -15,18 +15,15 @@ import java.util.Date;
 
 @Service
 public class UserService {
-    /*@Autowired
-    private UserMapper userMapper;*/
 
-    @Autowired
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     @Autowired
     private LoginLogMapper loginLogMapper;
 
     @Autowired
     public void setUserMapper(UserMapper userMapper) {
-        //this.userMapper = userMapper;
+        this.userMapper = userMapper;
     }
 
     @Autowired
@@ -34,9 +31,13 @@ public class UserService {
         this.loginLogMapper = loginLogMapper;
     }
 
+    /**
+     * 处理登陆成功的事务
+     * @param user 目标用户
+     */
     public void loginSuccess(User user) {
-        //LoginLog loginLog = new LoginLog(user.getLastIp(), user.getUserId(), new Date());
-        //loginLogMapper.insert(loginLog);
+        LoginLog loginLog = new LoginLog(user.getLastIp(), user.getUserId(), new Date());
+        loginLogMapper.insert(loginLog);
     }
 
     public void register(RegisterUserInputDTO registerUserInputDTO) throws UserExistException {
@@ -46,46 +47,46 @@ public class UserService {
         if(isDuplicatePhone(registerUserInputDTO.getPhone())) {
             throw new UserExistException("Duplicate phone.");
         }
-        //userMapper.insert(registerUserInputDTO.covertToUser());
-        userDao.save(registerUserInputDTO.covertToUser());
+        userMapper.insert(registerUserInputDTO.covertToUser());
     }
 
     public User loginByName(LoginCommandDTO loginCommandDTO) {
-       // if (userMapper.getMatchNameAndPasswordCount(loginCommandDTO.getKey(), loginCommandDTO.getPassword()) == 0) {
-         //   return null;
-        //}
-        //User user = userMapper.loadByName(loginCommandDTO.getKey());
-        //return user;
-        if(!userDao.hasMatchNameAndPassword(loginCommandDTO.getKey(), loginCommandDTO.getPassword())) {
+        if (userMapper.getMatchNameAndPasswordCount(loginCommandDTO.getKey(), loginCommandDTO.getPassword()) == 0) {
             return null;
         }
-        return userDao.loadByName(loginCommandDTO.getKey());
+        User user = userMapper.loadByName(loginCommandDTO.getKey());
+        return user;
     }
 
     public User loginByPhone(LoginCommandDTO loginCommandDTO) {
-        //if (userMapper.getMatchPhoneAndPasswordCount(loginCommandDTO.getKey(), loginCommandDTO.getPassword()) == 0) {
+        if (userMapper.getMatchPhoneAndPasswordCount(loginCommandDTO.getKey(), loginCommandDTO.getPassword()) == 0) {
             return null;
-        //}
-        //User user = userMapper.loadByPhone(loginCommandDTO.getKey());
-        //return user;
-    }
-
-    public void logout(User user) {
-
+        }
+        return userMapper.loadByPhone(loginCommandDTO.getKey());
     }
 
     public User getUserById(int id) {
-        //return userMapper.loadById(id);
-        return userDao.loadById(id);
+        return userMapper.loadById(id);
     }
 
     public boolean isDuplicateName(String name) {
-        //return userMapper.loadByName(name) != null;
-        return userDao.loadByName(name) != null;
+        return userMapper.loadByName(name) != null;
     }
 
     public boolean isDuplicatePhone(String phone) {
-        //return userMapper.loadByPhone(phone) != null;
-        return false;
+        return userMapper.loadByPhone(phone) != null;
+    }
+
+    public User updateUser(int id, UpdateUserDTO updateUserDTO) {
+        User user = userMapper.loadById(id);
+        if(updateUserDTO.getUserOldPassword() != null || !user.getPassword().equals(updateUserDTO.getUserOldPassword())) {
+            return null;
+        }
+        user.setName(updateUserDTO.getUserName());
+        user.setPhone(updateUserDTO.getUserPhone());
+        user.setSex(updateUserDTO.getUserSex());
+        user.setPassword(updateUserDTO.getUserNewPassword());
+        userMapper.update(user);
+        return user;
     }
 }

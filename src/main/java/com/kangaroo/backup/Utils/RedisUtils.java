@@ -31,51 +31,78 @@ public class RedisUtils {
     RedisTemplate<String, String> redisTemplate;
 
     /**
-     * 集合正常添加接口，无过期参数
-     * @param id 目标集合的key
+     * 基础接口：集合添加元素接口
+     * @param key 目标集合的key
      * @param v value
      * @return 至少添加一行返回true，否则false
      */
-    public boolean appendMemberSet(String id, String... v) {
-        Long count = redisTemplate.opsForSet().add(id, v);
+    public boolean appendMemberSet(String key, String... v) {
+        Long count = redisTemplate.opsForSet().add(key, v);
         return count > 0;
     }
 
     /**
-     * 可自动回收token的添加接口
-     * @param id key(非库中实际key)
+     * 可自动回收token的集合添加接口
+     * @param key key(非库中实际key)
      * @param v value
      * @return 至少添加一行返回true，否则false
      */
-    public boolean appendTokenSetAuto(String id, String... v) {
+    public boolean appendTokenSetAuto(String key, String... v) {
         long suffix = LocalDate.now().toEpochDay();
-        String key = id + suffix;
-        long count = redisTemplate.opsForSet().add(key, v);
-        redisTemplate.expire(key, TOKEN_DURATION_DAYS + EXTEND_DURATION_DAYS, TimeUnit.DAYS);
+        String realKey = key + suffix;
+        long count = redisTemplate.opsForSet().add(realKey, v);
+        redisTemplate.expire(realKey, TOKEN_DURATION_DAYS + EXTEND_DURATION_DAYS, TimeUnit.DAYS);
         return count > 0;
     }
 
     /**
-     * 查询是否元素是否存在于集合的接口
-     * @param id 目标集合的key
+     * 基础接口：添加string值键对的接口
+     * @param key key
+     * @param v value
+     */
+    public void appendValue(String key, String v) {
+        redisTemplate.opsForValue().set(key, v);
+    }
+
+    /**
+     * 基础接口：得到string值键对的值
+     * @param key key
+     * @return 对应值
+     */
+    public String getValue(String key) {
+        return redisTemplate.opsForValue().get(key);
+    }
+
+    /**
+     * 专门处理id的接口，可以返回并自增（从1开始）
+     * @param key key
+     * @return id值
+     */
+    public long getAndIncId(String key) {
+        return redisTemplate.opsForValue().increment(key);
+    }
+
+    /**
+     * 基础接口：查询是否元素是否存在于集合的接口
+     * @param key 目标集合的key
      * @param value 查询值
      * @return 存在返回true，否则false
      */
-    public boolean isMemberInSet(String id, String value) {
-        return redisTemplate.opsForSet().isMember(id, value);
+    public boolean isMemberInSet(String key, String value) {
+        return redisTemplate.opsForSet().isMember(key, value);
     }
 
     /**
      * 可自动回收token的查询接口，效率低，待改进
-     * @param id 目标集合的key
+     * @param key 目标集合的key
      * @param value 查询值
      * @return 存在返回true，否则false
      */
-    public boolean isTokenInSetAuto(String id, String value) {
+    public boolean isTokenInSetAuto(String key, String value) {
         long now = LocalDate.now().toEpochDay();
         long index = 0;
         while (index < TOKEN_DURATION_DAYS + 1) {
-            if (redisTemplate.opsForSet().isMember(id + (now - index), value)) {
+            if (redisTemplate.opsForSet().isMember(key + (now - index), value)) {
                 return true;
             }
             index++;
@@ -83,28 +110,39 @@ public class RedisUtils {
         return false;
     }
 
-    public boolean deleteMemberSet(String id, String... v) {
-        return redisTemplate.opsForSet().remove(id, v) > 0;
+    /**
+     * 基础接口：删除集合中元素的接口
+     * @param key key
+     * @param v value
+     * @return 至少删除一行返回true，否则返回false
+     */
+    public boolean deleteMemberSet(String key, String... v) {
+        return redisTemplate.opsForSet().remove(key, v) > 0;
     }
 
     /**
-     * 删除接口
-     * @param id 目标集合的key
+     * 自动回收对应的删除接口
+     * @param key 目标集合的key
      * @param v 待删除值
      * @return 删除至少一条返回true，否则false
      */
-    public boolean deleteTokenSetAuto(String id, String... v) {
+    public boolean deleteTokenSetAuto(String key, String... v) {
         int count = 0;
         long now = LocalDate.now().toEpochDay();
         long index = 0;
         while (index < TOKEN_DURATION_DAYS + 1) {
-            count += redisTemplate.opsForSet().remove(id + (now - index), v);
+            count += redisTemplate.opsForSet().remove(key + (now - index), v);
             index++;
         }
         return count != 0;
     }
 
-    public boolean deleteSet(String id) {
-        return redisTemplate.delete(id);
+    /**
+     * 基础接口：删除某个值键对（包括string，set等）
+     * @param key key
+     * @return 是否删除成功
+     */
+    public boolean delete(String key) {
+        return redisTemplate.delete(key);
     }
 }

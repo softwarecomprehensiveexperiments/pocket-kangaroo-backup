@@ -25,7 +25,6 @@ public class RedisUtilsTest {
         redisUtils.deleteMemberSet("1i", "3");
         Assert.assertTrue(redisUtils.isMemberInSet("1i", "1"));
         Assert.assertFalse(redisUtils.isMemberInSet("1i", "3"));
-        redisUtils.deleteSet("1i");
         long what = LocalDateTime.now().toLocalDate().toEpochDay();
         int bet = Period.between(LocalDate.now(), LocalDate.of(2019, 5, 29)).getDays();
         System.out.println(what + "----------------------" + bet);

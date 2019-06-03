@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
- * 负责登入、登出和注册的控制器类
+ * 负责响应登入、登出和注册的控制器类
  */
 @RestController
 @RequestMapping(value = "/user", method = RequestMethod.POST)
@@ -98,16 +98,15 @@ public class LoginAndRegisterController extends BaseController {
         queryResult.setSuccess(true);
         queryResult.setT(userOutputDTO);
         //生成Token
-        TokenPreloadDTO preload = new TokenPreloadDTO();
+        TokenPreloadDTO preload = new TokenPreloadDTO(redisUtils.getAndIncId(TokenConstant.REDIS_TOKEN_ID_KEY));
         preload.setIss(TokenConstant.SERVER_ISS);
         preload.setIat(System.currentTimeMillis());
         preload.setExp(System.currentTimeMillis() + TokenConstant.EXP_TIME);
         preload.setUserId(userOutputDTO.getId());
-        preload.setUserName(userOutputDTO.getName());
         String token = JWTUtils.getToken(TokenConstant.JWT_HEADER_STRING, JsonUtils.objToString(preload));
         response.setHeader("Authorization", token);
         //添加redis缓存
-        redisUtils.appendTokenSetAuto(TokenConstant.REDIS_KEY, String.valueOf(preload.getJwtId()));
+        redisUtils.appendTokenSetAuto(TokenConstant.REDIS_TOKEN_KEY, String.valueOf(preload.getJwtId()));
         return queryResult;
     }
 
@@ -124,7 +123,7 @@ public class LoginAndRegisterController extends BaseController {
         String token = request.getHeader("Authorization");
         long id = JWTUtils.getPreloadId(token, TokenPreloadDTO.class);
         PureStateDTO pureStateDTO = new PureStateDTO();
-        pureStateDTO.setSuccess(redisUtils.deleteTokenSetAuto(TokenConstant.REDIS_KEY, String.valueOf(id)));
+        pureStateDTO.setSuccess(redisUtils.deleteTokenSetAuto(TokenConstant.REDIS_TOKEN_KEY, String.valueOf(id)));
         return pureStateDTO;
     }
 }

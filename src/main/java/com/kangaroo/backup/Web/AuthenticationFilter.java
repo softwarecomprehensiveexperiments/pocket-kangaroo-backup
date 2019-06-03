@@ -36,6 +36,7 @@ public class AuthenticationFilter extends BaseController implements Filter {
         GREEN_URLS.add("/user/login");
         GREEN_URLS.add("/user/register");
         GREEN_URLS.add("/in");
+        GREEN_URLS.add("/BodyTest");
     }
 
     @Override
@@ -62,7 +63,7 @@ public class AuthenticationFilter extends BaseController implements Filter {
             //是否为合法Token
             if(token != null && JWTUtils.checkToken(token, TokenPreloadDTO.class)) {
                 //是否在redis缓存中
-                if(redisUtils.isTokenInSetAuto(TokenConstant.REDIS_KEY, String.valueOf(JWTUtils.getPreloadId(token, TokenPreloadDTO.class)))) {
+                if(redisUtils.isTokenInSetAuto(TokenConstant.REDIS_TOKEN_KEY, String.valueOf(JWTUtils.getPreloadId(token, TokenPreloadDTO.class)))) {
                     chain.doFilter(request, response);
                 }
                 else {

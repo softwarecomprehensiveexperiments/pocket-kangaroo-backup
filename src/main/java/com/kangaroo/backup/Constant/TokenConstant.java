@@ -21,5 +21,10 @@ public interface TokenConstant {
     /**
      * Redis缓存中索引的key
      */
-    String REDIS_KEY = "TokenIdSet";
+    String REDIS_TOKEN_KEY = "ActiveTokenIdSet";
+
+    /**
+     * Redis缓存中的tokenID对应key
+     */
+    String REDIS_TOKEN_ID_KEY = "CurrentTokenId";
 }

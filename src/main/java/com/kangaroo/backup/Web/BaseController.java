@@ -14,12 +14,12 @@ public class BaseController {
      * @return userId
      * @throws NoCurrentUserException
      */
-    public final long getCurrentUserId(HttpServletRequest request) throws NoCurrentUserException {
+    public final int getCurrentUserId(HttpServletRequest request) throws NoCurrentUserException {
         String token = request.getHeader("Authorization");
         if(token == null || token.isEmpty()) {
             throw new NoCurrentUserException();
         }
-        long userId = JWTUtils.getUserId(token, TokenPreloadDTO.class);
+        int userId = JWTUtils.getUserId(token, TokenPreloadDTO.class);
         if(userId == -1) {
             throw new NoCurrentUserException();
         }

@@ -18,9 +18,6 @@ public class Task extends BaseDomain {
     private String taskContent;
     private int taskPrice;
     private int taskPublisherId;
-    //taskReceiversId由Vector类型改为String类型，类似："12354&448936$65484"，便于数据库存储操作
-//    private Vector<Integer> taskReceiversId;
-    private String taskReceiversId;
     private Date taskPublishDate;
     private int taskType;
     private Date taskCompleteDate;
@@ -41,7 +38,7 @@ public class Task extends BaseDomain {
         public static final int COMPLETED_OUT_OF_TIME = 3;
     }
 
-    public Task(String taskTitle, int taskType, String taskContent, int taskPrice, int taskPublisherId, String taskReceiversId,
+    public Task(String taskTitle, int taskType, String taskContent, int taskPrice, int taskPublisherId,
                 Date taskPublishDate, Date taskDeadLineDate) {
         this.taskTitle = taskTitle;
         this.taskType = taskType;
@@ -49,7 +46,6 @@ public class Task extends BaseDomain {
         this.taskPrice = taskPrice;
         this.taskPublisherId = taskPublisherId;
 //        this.taskReceiversId = new Vector<>();
-        this.taskReceiversId = taskReceiversId;
         this.taskPublishDate = taskPublishDate;
         this.taskCompleteDate = DateConstant.NULL_DATE;
         this.taskDeadLineDate = taskDeadLineDate;
@@ -96,21 +92,6 @@ public class Task extends BaseDomain {
 
     public void setTaskPublisherId(int taskPublisherId) {
         this.taskPublisherId = taskPublisherId;
-    }
-
-//    public Vector<Integer> getTaskReceiversId() {
-//        return taskReceiversId;
-//    }
-
-//    public void setTaskReceiversId(Vector<Integer> taskReceiversId) {
-//        this.taskReceiversId = taskReceiversId;
-//    }
-
-    public String getTaskReceiversId() {
-        return taskReceiversId;
-    }
-    public void setTaskReceiversId(String taskReceiversId) {
-        this.taskReceiversId = taskReceiversId;
     }
 
     public Date getTaskPublishDate() {

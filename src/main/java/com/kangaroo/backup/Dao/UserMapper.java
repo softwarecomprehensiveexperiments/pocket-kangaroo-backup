@@ -1,6 +1,7 @@
 package com.kangaroo.backup.Dao;
 
 import com.kangaroo.backup.Domain.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface UserMapper {
 
     /**
      * Get User matching name.
-     * @param name
+     * @param userName
      *        the key to find.
      * @return the user find (null if doesn't exist).
      */
@@ -25,7 +26,7 @@ public interface UserMapper {
 
     /**
      * Get User matching phone.
-     * @param phone
+     * @param usrPhone
      *        the key to find.
      * @return the user find (null if doesn't exist).
      */
@@ -47,13 +48,15 @@ public interface UserMapper {
     void update(User user);
 
     /**
-     * @param id
+     * @param userId
      *       the id of the user to be delete
      * @function find the user by id in DB and delete it
      */
     void delete(int userId);
 
-    int getMatchPhoneAndPasswordCount(String userPhone, String userPassword);
-    int getMatchNameAndPasswordCount(String userName, String userPassword);
+    int getMatchPhoneAndPasswordCount(@Param("userPhone") String userPhone, @Param("userPassword") String userPassword);
+
+    int getMatchNameAndPasswordCount(@Param("userName") String userName, @Param("userPassword") String userPassword);
+
     User loadById(int userId);
 }
