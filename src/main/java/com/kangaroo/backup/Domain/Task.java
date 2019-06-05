@@ -1,9 +1,11 @@
 package com.kangaroo.backup.Domain;
 
 import com.kangaroo.backup.Constant.DateConstant;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -11,31 +13,54 @@ import java.util.Vector;
  */
 @EntityScan
 public class Task extends BaseDomain {
+
     private static final long serialVersionUID = -4841653072498200773L;
+
     private int taskId;
+
     private String taskTitle;
-    private Date taskDeadLineDate;
+
     private String taskContent;
-    private int taskPrice;
-    private int taskPublisherId;
-    private Date taskPublishDate;
+
     private int taskType;
+
+    private Date taskPublishDate;
+
+    private Date taskDeadLineDate;
+
+    /**
+     * new
+     */
+    private int maxReceiversCount;
+
+    /**
+     * new
+     * can be null
+     */
+    private List<Question> questionnaire;
+
+    private int taskPrice;
+
+    private int taskPublisherId;
+
     private Date taskCompleteDate;
+
     private int taskState;
 
-    public class TaskType {
-
+    public static class TaskType {
+        public static final String[] TYPE_CHINESE_SET = {"跑腿", "分享", "调查问卷"};
         public static final int RUN_ERRANDS = 0;
         public static final int RESOURCE_SHARE = 1;
         public static final int SURVEY = 2;
     }
 
-    public class TaskState {
-
-        public static final int NOT_RECEIVED = 0;
-        public static final int DOING = 1;
-        public static final int COMPLETED_NORMALLY = 2;
-        public static final int COMPLETED_OUT_OF_TIME = 3;
+    public static class TaskState {
+        public static final String[] STATE_CHINESE_SET = {"待领取", "等待完成", "等待确认", "已完成", "已取消"};
+        public static final int WAITTING_FOR_RECEIVED = 0;
+        public static final int WAITTING_FOR_COMPLETED = 1;
+        public static final int WAITTING_FOR_CHECKED = 2;
+        public static final int COMPLETED_NORMALLY = 3;
+        public static final int CANCELED = 4;
     }
 
     public Task(String taskTitle, int taskType, String taskContent, int taskPrice, int taskPublisherId,
@@ -45,15 +70,29 @@ public class Task extends BaseDomain {
         this.taskContent = taskContent;
         this.taskPrice = taskPrice;
         this.taskPublisherId = taskPublisherId;
-//        this.taskReceiversId = new Vector<>();
         this.taskPublishDate = taskPublishDate;
         this.taskCompleteDate = DateConstant.NULL_DATE;
         this.taskDeadLineDate = taskDeadLineDate;
-        this.taskState = TaskState.NOT_RECEIVED;
+        this.taskState = TaskState.WAITTING_FOR_RECEIVED;
     }
 
+    public int getMaxReceiversCount() {
+        return maxReceiversCount;
+    }
 
-//移动到服务层
+    public void setMaxReceiversCount(int maxReceiversCount) {
+        this.maxReceiversCount = maxReceiversCount;
+    }
+
+    public List<Question> getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(List<Question> questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
+    //移动到服务层
 //    public boolean addReceiver(User user) {
 //        if(user == null) {
 //            return false;
@@ -165,4 +204,5 @@ public class Task extends BaseDomain {
     public void setTaskState(int taskState) {
         this.taskState = taskState;
     }
+
 }

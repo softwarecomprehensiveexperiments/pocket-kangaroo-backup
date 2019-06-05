@@ -8,6 +8,8 @@ import com.kangaroo.backup.Dao.UserMapper;
 import com.kangaroo.backup.Domain.LoginLog;
 import com.kangaroo.backup.Domain.User;
 import com.kangaroo.backup.Exception.UserExistException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.Date;
 public class UserService {
 
     private UserMapper userMapper;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private LoginLogMapper loginLogMapper;
@@ -79,6 +83,8 @@ public class UserService {
 
     public User updateUser(int id, UpdateUserDTO updateUserDTO) {
         User user = userMapper.loadById(id);
+        logger.info("up : [{}]", updateUserDTO.getUserName());
+        logger.info("Updating user id: [{}], old password: [{}], input password: [{}]", id, user.getPassword(), updateUserDTO.getUserOldPassword());
         if(updateUserDTO.getUserOldPassword() != null || !user.getPassword().equals(updateUserDTO.getUserOldPassword())) {
             return null;
         }

@@ -20,6 +20,18 @@ public class User extends BaseDomain {
     public static class Sex {
         public static final int BOY = 0;
         public static final int GIRL = 1;
+
+    }
+
+    public User(int userId, String userPhone, String userName, String userPassword, int userSex) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userPhone = userPhone;
+        this.userSex = userSex;
+        this.userProperties = 0;
+        this.userIcon = null;
+        this.userLastIp = null;
     }
 
     public User(String userPhone, String userName, String userPassword, int userSex) {

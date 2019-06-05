@@ -1,13 +1,13 @@
 package com.kangaroo.backup.Web;
 
-import com.kangaroo.backup.DTO.PureStateDTO;
-import com.kangaroo.backup.DTO.TokenPreloadDTO;
-import com.kangaroo.backup.DTO.UpdateUserDTO;
+import com.kangaroo.backup.DTO.*;
 import com.kangaroo.backup.Domain.User;
 import com.kangaroo.backup.Exception.NoCurrentUserException;
 import com.kangaroo.backup.Service.UserService;
 import com.kangaroo.backup.Utils.FormatCheckerUtils;
 import com.kangaroo.backup.Utils.JWTUtils;
+import com.sun.tools.javac.util.Assert;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ public class UserManagerController extends BaseController {
     private UserService userService;
 
     @RequestMapping(value = "/user/updateCurrentUser", method = RequestMethod.POST)
-    public PureStateDTO updateUser(@RequestBody UpdateUserDTO updateUserDTO, HttpServletRequest request, HttpServletResponse response) {
+    public PureStateDTO updateUser(@RequestBody UpdateUserDTO updateUserDTO, HttpServletRequest request) {
         PureStateDTO pureStateDTO = new PureStateDTO();
         pureStateDTO.setSuccess(false);
         boolean isValidPassword = (updateUserDTO.getUserOldPassword() == null && updateUserDTO.getUserNewPassword() == null) ||
@@ -45,8 +45,8 @@ public class UserManagerController extends BaseController {
                 pureStateDTO.setDescription("原密码错误");
                 return pureStateDTO;
             }
-//            TokenPreloadDTO
-//            JWTUtils.
+            pureStateDTO.setSuccess(true);
+            return pureStateDTO;
         } catch (NoCurrentUserException e) {
             e.printStackTrace();
             pureStateDTO.setSuccess(false);
@@ -54,4 +54,25 @@ public class UserManagerController extends BaseController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/user/queryCurrentUser", method = RequestMethod.GET)
+    public QueryResult<UserOutputDTO> queryCurrentUser(HttpServletRequest request) {
+        QueryResult<UserOutputDTO> queryResult = new QueryResult<>();
+        queryResult.setSuccess(false);
+        try {
+            User user = userService.getUserById(getCurrentUserId(request));
+            Assert.checkNonNull(user);
+            UserOutputDTO userOutputDTO = new UserOutputDTO();
+            BeanUtils.copyProperties(user, userOutputDTO);
+            queryResult.setSuccess(true);
+            queryResult.setT(userOutputDTO);
+            return queryResult;
+        } catch (NoCurrentUserException e) {
+            e.printStackTrace();
+            queryResult.setDescription("当前无登录用户");
+        }
+        return queryResult;
+    }
+
+    @RequestMapping(value = "/user/query")
 }

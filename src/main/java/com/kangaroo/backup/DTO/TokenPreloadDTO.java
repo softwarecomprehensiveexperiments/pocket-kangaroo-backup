@@ -18,7 +18,6 @@ public class TokenPreloadDTO {
         jwtId = id;
     }
 
-
     public String getIss() {
         return iss;
     }
