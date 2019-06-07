@@ -7,6 +7,7 @@ import com.kangaroo.backup.Service.UserService;
 import com.kangaroo.backup.Utils.FormatCheckerUtils;
 import com.kangaroo.backup.Utils.JWTUtils;
 import com.sun.tools.javac.util.Assert;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -74,5 +75,5 @@ public class UserManagerController extends BaseController {
         return queryResult;
     }
 
-    @RequestMapping(value = "/user/query")
+//    @RequestMapping(value = "/user/query")
 }

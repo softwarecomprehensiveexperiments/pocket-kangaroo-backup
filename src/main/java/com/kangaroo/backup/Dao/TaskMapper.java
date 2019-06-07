@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface TaskMapper {
 
+    /*查询，task与questionnarie联合查询*/
     List<Task> getTaskList();
 
     List<Task> getTaskListByTitle(String taskTitle);

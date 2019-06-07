@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kangaroo.backup.Domain.Question">
+    <insert id="saveQuestionnarie" parameterType="java.util.List">
+        INSERT INTO kangaroo.questionnaire(task_id, question_description, if_multipleSelect, options_count, options)
+        VALUES
+        <foreach collection="list" item="question" separator=",">
+            (
+            #{taskId},
+            #{questionDescription},
+            #{ifMultipleSelect},
+            #{optionsCount},
+            #{options}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteQuestionnarie" parameterType="int">
+        DELETE FROM kangaroo.questionnaire
+        WHERE question_id=#{questionId}
+    </delete>
+
+</mapper>

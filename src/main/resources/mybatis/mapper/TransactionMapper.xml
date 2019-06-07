@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kangaroo.backup.Dao.TransactionMapper">
+    <resultMap id="BaseResultMap" type="com.kangaroo.backup.Domain.Transaction">
+        <id column="transaction_id" property="transactionId" jdbcType="INTEGER"/>
+        <result column="task_id" property="taskId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="transaction_state" property="transactionState" jdbcType="INTEGER"/>
+        <result column="transaction_startTime" property="transactionStartTime" jdbcType="DATE"/>
+        <result column="transaction_completeTime" property="transactionCompleteTime" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="Base_column_list">
+        transaction_id, task_id, user_id, transaction_state, transaction_startTime, transaction_completeTime
+    </sql>
+    <select id="getAllTransaction" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM kangaroo.transaction
+    </select>
+    <select id="getTransactionById" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM kangaroo.transaction WHERE transaction_id=#{transactionId}
+    </select>
+    <insert id="insertTransaction" parameterType="com.kangaroo.backup.Domain.Transaction">
+        INSERT INTO kangaroo.transaction(task_id, user_id, transaction_state, transaction_startTime, transaction_completeTime)
+        VALUES (#{taskId},#{userId},#{transactionState},#{transactionStartTime},#{transactionCompleteTime})
+    </insert>
+    <update id="updateTransaction" parameterType="com.kangaroo.backup.Domain.Transaction">
+        UPDATE kangaroo.transaction
+        <set>
+            <if test="taskId!=null">task_id=#{taskId},</if>
+            <if test="userId!=null">user_id=#{userId},</if>
+            <if test="transactionState!=null">transaction_state=#{transactionState},</if>
+            <if test="transactionStartTime!=null">transaction_startTime=#{transactionStartTime},</if>
+            <if test="transactionCompleteTime!=null">transaction_completeTime=#{transactionCompleteTime},</if>
+        </set>
+        WHERE transaction_id=#{transactionId}
+    </update>
+    <delete id="deleteTransaction" parameterType="int">
+        DELETE FROM kangaroo.transaction
+        WHERE transaction_id=#{transactionId}
+    </delete>
+</mapper>

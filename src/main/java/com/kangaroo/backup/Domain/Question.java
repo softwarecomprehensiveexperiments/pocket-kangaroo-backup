@@ -11,13 +11,17 @@ public class Question extends BaseDomain{
 
     private int questionId;
 
+    /*是否增加外键以便联合task查询*/
+    private int taskId;
+
     private String questionDescription;
 
     private Boolean ifMultipleSelect;
 
     private int optionsCount;
 
-    private List<String> options;
+//    private List<String> options;
+    private String options;
 
     public Question() {
     }
@@ -54,11 +58,21 @@ public class Question extends BaseDomain{
         this.optionsCount = optionsCount;
     }
 
-    public List<String> getOptions() {
-        return options;
+//    public List<String> getOptions() {
+//        return options;
+//    }
+//
+//    public void setOptions(List<String> options) {
+//        this.options = options;
+//    }
+    public String getOptions(){return options;}
+    public void setOptions(String options){ this.options = options; }
+
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setOptions(List<String> options) {
-        this.options = options;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 }

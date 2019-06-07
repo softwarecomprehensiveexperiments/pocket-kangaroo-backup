@@ -21,6 +21,7 @@ create table task
     task_id       int          not null auto_increment,
     task_title    varchar(32)  not null,
     task_deadLineDate datetime     not null,
+    max_receiversCount int not null,
     task_content  text         null,
     task_price        int          not null,
     task_publisherId  int          not null,
@@ -39,3 +40,28 @@ create table loginlog
     loginLog_date       date         not null,
     primary key (loginLog_id)
 )engine=InnoDB auto_increment=1 default charset=utf8;
+
+create table transaction
+(
+    transaction_id int          not null auto_increment,
+    user_id        int          not null,
+    task_id        int          not null,
+    transaction_state int not null,
+    transaction_startTime date not null,
+    transaction_completeTime date not null,
+    primary key (transaction_id)
+)engine=InnoDB auto_increment=1 default charset=utf8;
+alter table transaction add foreign key (user_id) references users(user_id);
+alter table transaction add foreign key (task_id) references task(task_id);
+
+create table questionnaire
+(
+    question_id int not null auto_increment,
+    task_id int not null,
+    question_description text not null,
+    if_multipleSelect boolean not null,
+    options_count int not null,
+    options VARCHAR(128) not null,
+    primary key (question_id)
+)engine=InnoDB auto_increment=1 default charset=utf8;
+alter table questionnaire add foreign key (task_id) references task(task_id);
