@@ -36,7 +36,7 @@ public class AuthenticationFilter extends BaseController implements Filter {
         GREEN_URLS.add("/user/login");
         GREEN_URLS.add("/user/register");
         GREEN_URLS.add("/in");
-        GREEN_URLS.add("/BodyTest");
+        GREEN_URLS.add("/*Test");
     }
 
     @Override

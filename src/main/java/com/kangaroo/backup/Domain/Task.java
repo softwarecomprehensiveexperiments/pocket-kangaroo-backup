@@ -1,12 +1,10 @@
 package com.kangaroo.backup.Domain;
 
 import com.kangaroo.backup.Constant.DateConstant;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * PO/DO class.
@@ -28,15 +26,8 @@ public class Task extends BaseDomain {
 
     private Date taskDeadLineDate;
 
-    /**
-     * new
-     */
     private int maxReceiversCount;
 
-    /**
-     * new
-     * can be null
-     */
     private List<Question> questionnaire;
 
     private int taskPrice;

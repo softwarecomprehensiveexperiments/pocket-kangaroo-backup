@@ -37,7 +37,7 @@ public class LoginAndRegisterController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(LoginAndRegisterController.class);
 
     @Autowired
-    public void setUserDao(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
@@ -65,7 +65,7 @@ public class LoginAndRegisterController extends BaseController {
     }
 
     @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
-    public QueryResult<UserOutputDTO> login(@RequestBody LoginCommandDTO loginCommand,
+    public QueryResult<UserOutputDTO> login(@RequestBody LoginCommandInputDTO loginCommand,
                                             HttpServletRequest request, HttpServletResponse response) {
         logger.info("Login request received from " + request.getLocalAddr() + ".");
         QueryResult<UserOutputDTO> queryResult = new QueryResult<>();
@@ -102,7 +102,7 @@ public class LoginAndRegisterController extends BaseController {
         preload.setIss(TokenConstant.SERVER_ISS);
         preload.setIat(System.currentTimeMillis());
         preload.setExp(System.currentTimeMillis() + TokenConstant.EXP_TIME);
-        preload.setUserId(userOutputDTO.getId());
+        preload.setUserId(userOutputDTO.getUserId());
         String token = JWTUtils.getToken(TokenConstant.JWT_HEADER_STRING, JsonUtils.objToString(preload));
         response.setHeader("Authorization", token);
         //添加redis缓存

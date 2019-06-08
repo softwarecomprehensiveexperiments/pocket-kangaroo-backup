@@ -63,7 +63,7 @@
         SELECT COUNT(user_name)
         FROM kangaroo.users WHERE user_name=#{userName} AND user_password=#{userPassword}
     </select>
-    <select id="loadById" resultType="com.kangaroo.backup.Domain.User">
+    <select id="loadById"  parameterType="int" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_column_list"/>
         FROM kangaroo.users WHERE user_id=#{userId}

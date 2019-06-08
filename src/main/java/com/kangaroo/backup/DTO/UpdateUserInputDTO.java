@@ -2,7 +2,7 @@ package com.kangaroo.backup.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UpdateUserDTO {
+public class UpdateUserInputDTO {
     @JsonProperty("user_name")
     private String userName;
 

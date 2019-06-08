@@ -9,7 +9,7 @@ public class UserOutputDTO implements Serializable {
     private static final long serialVersionUID = -3387275890406870339L;
 
     @JsonProperty(value = "user_id")
-    private int id;
+    private int userId;
 
     @JsonProperty(value = "user_phone")
     private String phone;
@@ -42,12 +42,12 @@ public class UserOutputDTO implements Serializable {
 
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int id) {
+        this.userId = id;
     }
 
     public String getPhone() {

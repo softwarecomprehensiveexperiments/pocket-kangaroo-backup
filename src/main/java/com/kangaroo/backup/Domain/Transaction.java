@@ -15,6 +15,12 @@ public class Transaction extends BaseDomain{
 
     private int userId;
 
+    /**
+     * New
+     * 存放问卷填写结果或者任务完成反馈
+     */
+    private String doResult;
+
     private int transactionState;
 
     private Date transactionStartTime;

@@ -7,19 +7,19 @@
     <resultMap id="TaskResult" type="com.kangaroo.backup.Domain.Task">
         <id column="task_id" property="taskId" jdbcType="INTEGER"/>
         <result column="task_title" property="taskTitle" jdbcType="VARCHAR"/>
-        <result column="task_deadLineDate" property="taskDeadLineDate" jdbcType="DATETIME"/>
+        <result column="task_deadLineDate" property="taskDeadLineDate" jdbcType="TIMESTAMP"/>
         <result column="max_ReceiversCount" property="maxReceiversCount" jdbcType="INTEGER"/>
-        <result column="task_content" property="taskContent" jdbcType="TEXT"/>
+        <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR"/>
         <result column="task_price" property="taskPrice" jdbcType="INTEGER"/>
         <result column="task_publisherId" property="taskPublisherId" jdbcType="INTEGER"/>
-        <result column="task_publishDate" property="taskPublishDate" jdbcType="DATETIME"/>
+        <result column="task_publishDate" property="taskPublishDate" jdbcType="TIMESTAMP"/>
         <result column="task_type" property="taskType" jdbcType="VARCHAR"/>
-        <result column="task_completeDate" property="taskCompleteDate" jdbcType="DATE"/>
+        <result column="task_completeDate" property="taskCompleteDate" jdbcType="TIMESTAMP"/>
         <result column="task_state" property="taskState" jdbcType="INTEGER"/>
         <collection property="questionnaire" ofType="com.kangaroo.backup.Domain.Question">
             <id column="question_id" property="questionId" jdbcType="INTEGER"/>
             <result column="task_id" property="taskId" jdbcType="INTEGER"/>
-            <result column="question_description" property="questionDescription" jdbcType="TEXT"/>
+            <result column="question_description" property="questionDescription" jdbcType="LONGVARCHAR"/>
             <result column="if_multipleSelect" property="ifMultipleSelect" jdbcType="TINYINT"/>
             <result column="options_count" property="optionsCount" jdbcType="INTEGER"/>
             <result column="options" property="options" jdbcType="VARCHAR"/>

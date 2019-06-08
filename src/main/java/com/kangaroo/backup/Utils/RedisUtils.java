@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 封装的Redis缓存管理类（主要处理Set数据）
+ * 封装的Redis缓存管理类（目前可处理Set和String数据）
  *
  * 为了达到自动管理缓存的目的，内部封装了将一整个集合划分为多个小集合的功能
  * 每个小集合过期时间为设定的过期时间加一天，也就是服务器会多存放一天的过期信息

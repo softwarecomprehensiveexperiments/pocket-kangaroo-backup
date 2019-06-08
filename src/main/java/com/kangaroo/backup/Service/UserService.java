@@ -1,8 +1,8 @@
 package com.kangaroo.backup.Service;
 
-import com.kangaroo.backup.DTO.LoginCommandDTO;
+import com.kangaroo.backup.DTO.LoginCommandInputDTO;
 import com.kangaroo.backup.DTO.RegisterUserInputDTO;
-import com.kangaroo.backup.DTO.UpdateUserDTO;
+import com.kangaroo.backup.DTO.UpdateUserInputDTO;
 import com.kangaroo.backup.Dao.LoginLogMapper;
 import com.kangaroo.backup.Dao.UserMapper;
 import com.kangaroo.backup.Domain.LoginLog;
@@ -54,21 +54,22 @@ public class UserService {
         userMapper.insert(registerUserInputDTO.covertToUser());
     }
 
-    public User loginByName(LoginCommandDTO loginCommandDTO) {
-        if (userMapper.getMatchNameAndPasswordCount(loginCommandDTO.getKey(), loginCommandDTO.getPassword()) == 0) {
+    public User loginByName(LoginCommandInputDTO loginCommandInputDTO) {
+        if (userMapper.getMatchNameAndPasswordCount(loginCommandInputDTO.getKey(), loginCommandInputDTO.getPassword()) == 0) {
             return null;
         }
-        User user = userMapper.loadByName(loginCommandDTO.getKey());
+        User user = userMapper.loadByName(loginCommandInputDTO.getKey());
         return user;
     }
 
-    public User loginByPhone(LoginCommandDTO loginCommandDTO) {
-        if (userMapper.getMatchPhoneAndPasswordCount(loginCommandDTO.getKey(), loginCommandDTO.getPassword()) == 0) {
+    public User loginByPhone(LoginCommandInputDTO loginCommandInputDTO) {
+        if (userMapper.getMatchPhoneAndPasswordCount(loginCommandInputDTO.getKey(), loginCommandInputDTO.getPassword()) == 0) {
             return null;
         }
-        return userMapper.loadByPhone(loginCommandDTO.getKey());
+        return userMapper.loadByPhone(loginCommandInputDTO.getKey());
     }
 
+    //未完成，尚未添加访问历史任务和交易的列
     public User getUserById(int id) {
         return userMapper.loadById(id);
     }
@@ -81,17 +82,23 @@ public class UserService {
         return userMapper.loadByPhone(phone) != null;
     }
 
-    public User updateUser(int id, UpdateUserDTO updateUserDTO) {
+    public User updateUser(int id, UpdateUserInputDTO updateUserInputDTO) {
         User user = userMapper.loadById(id);
-        logger.info("up : [{}]", updateUserDTO.getUserName());
-        logger.info("Updating user id: [{}], old password: [{}], input password: [{}]", id, user.getPassword(), updateUserDTO.getUserOldPassword());
-        if(updateUserDTO.getUserOldPassword() != null || !user.getPassword().equals(updateUserDTO.getUserOldPassword())) {
+        User user1 = userMapper.loadByName("chenjifan");
+        logger.info("up11 : [{}]", user1.getUserId());
+        logger.info("up : [{}]", updateUserInputDTO.getUserName());
+        logger.info("up22 : [{}]", id);
+        logger.info("up223 : [{}]", user.getName());
+        logger.info("up224 : [{}]", user1.getPassword());
+        logger.info("up2 : [{}]", user.getUserId());
+        logger.info("up3 : [{}]", user.getPassword());
+        if(updateUserInputDTO.getUserOldPassword() != null || !user.getPassword().equals(updateUserInputDTO.getUserOldPassword())) {
             return null;
         }
-        user.setName(updateUserDTO.getUserName());
-        user.setPhone(updateUserDTO.getUserPhone());
-        user.setSex(updateUserDTO.getUserSex());
-        user.setPassword(updateUserDTO.getUserNewPassword());
+        user.setName(updateUserInputDTO.getUserName());
+        user.setPhone(updateUserInputDTO.getUserPhone());
+        user.setSex(updateUserInputDTO.getUserSex());
+        user.setPassword(updateUserInputDTO.getUserNewPassword());
         userMapper.update(user);
         return user;
     }

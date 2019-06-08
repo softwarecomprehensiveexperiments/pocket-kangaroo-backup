@@ -1,6 +1,6 @@
 package com.kangaroo.backup.DTO;
 
-public class LoginCommandDTO {
+public class LoginCommandInputDTO {
 
     private String key;
 

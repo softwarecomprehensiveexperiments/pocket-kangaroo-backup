@@ -97,7 +97,7 @@ public class JWTUtils {
     }
 
     /**
-     * 得到token的userId(无校验过程)
+     * 得到token的userId(无校验过程，因为调用时必定已通过过滤器)
      * @param token 目标token
      * @param clazz 用于封装属性的class
      * @return 解析得到的userId

@@ -23,6 +23,8 @@ public class User extends BaseDomain {
 
     }
 
+    public User() {}
+
     public User(int userId, String userPhone, String userName, String userPassword, int userSex) {
         this.userId = userId;
         this.userName = userName;
