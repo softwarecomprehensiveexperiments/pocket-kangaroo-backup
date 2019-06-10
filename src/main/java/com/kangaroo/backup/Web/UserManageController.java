@@ -68,10 +68,8 @@ public class UserManageController extends BaseController {
         QueryResult<UserOutputDTO> queryResult = new QueryResult<>();
         queryResult.setSuccess(false);
         try {
-            User user = userService.getUserById(getCurrentUserId(request));
-            assert user != null;
-            UserOutputDTO userOutputDTO = new UserOutputDTO();
-            BeanUtils.copyProperties(user, userOutputDTO);
+            UserOutputDTO userOutputDTO = userService.getUserOutputDTOById(getCurrentUserId(request));
+            assert userOutputDTO != null;
             queryResult.setSuccess(true);
             queryResult.setT(userOutputDTO);
             return queryResult;

@@ -48,16 +48,31 @@ public class TaskManageController extends BaseController{
         return pureStateDTO;
     }
 
+    /**
+     * 发布者确认完成任务
+     * @param taskId
+     * @return
+     */
     @RequestMapping(value = "/{taskId}", method = RequestMethod.PUT)
-    public PureStateDTO checkTask(@PathVariable int taskId, HttpServletRequest request) {
+    public PureStateDTO checkTask(@PathVariable int taskId) {
         PureStateDTO pureStateDTO = new PureStateDTO();
         pureStateDTO.setSuccess(false);
-        try {
-            int userId = getCurrentUserId(request);
+        taskService.checkTask(taskId);
+        pureStateDTO.setSuccess(true);
+        return pureStateDTO;
+    }
 
-        } catch (NoCurrentUserException e) {
-            pureStateDTO.setDescription("认证未知错误");
-            e.printStackTrace();
+    /**
+     * 取消任务
+     * @param taskId
+     * @return
+     */
+    @RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE)
+    public PureStateDTO cancelTask(@PathVariable int taskId) {
+        PureStateDTO pureStateDTO = new PureStateDTO();
+        pureStateDTO.setSuccess(false);
+        taskService.cancelTask(taskId);
+        pureStateDTO.setSuccess(true);
         return pureStateDTO;
     }
 
@@ -84,5 +99,7 @@ public class TaskManageController extends BaseController{
         }
         return result;
     }
+
+
 
 }

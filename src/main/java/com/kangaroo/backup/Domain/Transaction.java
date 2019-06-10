@@ -99,6 +99,7 @@ public class Transaction extends BaseDomain{
         this.transactionCompleteTime = transactionCompleteTime;
     }
 
+    //改为MQ
     //    public int getState() {
 //        if(transactionCancelTime != DateConstant.NULL_DATE) {
 //            return TransactionState.CANCELED;

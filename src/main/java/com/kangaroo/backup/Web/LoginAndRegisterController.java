@@ -93,8 +93,7 @@ public class LoginAndRegisterController extends BaseController {
         user.setLastDate(new Date());
         user.setLastIp(request.getLocalAddr());
         userService.loginSuccess(user);
-        UserOutputDTO userOutputDTO = new UserOutputDTO();
-        BeanUtils.copyProperties(user, userOutputDTO);
+        UserOutputDTO userOutputDTO = userService.getUserOutputDTOByUser(user);
         queryResult.setSuccess(true);
         queryResult.setT(userOutputDTO);
         //生成Token

@@ -3,7 +3,6 @@ package com.kangaroo.backup.Service;
 import com.kangaroo.backup.DTO.ShortTaskOutputDTO;
 import com.kangaroo.backup.DTO.TaskCreateInputDTO;
 import com.kangaroo.backup.Dao.TaskMapper;
-import com.kangaroo.backup.Dao.TransactionMapper;
 import com.kangaroo.backup.Domain.Task;
 import com.kangaroo.backup.Domain.Transaction;
 import com.kangaroo.backup.Exception.NoPlaceLeftException;
@@ -22,8 +21,6 @@ public class TaskService {
 
     private AccountService accountService;
 
-    private TransactionMapper transactionMapper;
-
     @Autowired
     public void setTaskMapper(TaskMapper taskMapper) {
         this.taskMapper = taskMapper;
@@ -34,9 +31,11 @@ public class TaskService {
         this.accountService = accountService;
     }
 
+    private TransactionService transactionService;
+
     @Autowired
-    public void setTransactionMapper(TransactionMapper transactionMapper) {
-        this.transactionMapper = transactionMapper;
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 
     public void createTask(int userId, TaskCreateInputDTO taskCreateInputDTO) throws NotEnoughBalanceException {
@@ -65,13 +64,13 @@ public class TaskService {
      * @param taskId
      * @throws NoPlaceLeftException
      */
-    public void addReceiver(int taskId) throws NoPlaceLeftException {
+    void addReceiver(int taskId) throws NoPlaceLeftException {
         Task task = taskMapper.loadById(taskId);
         if(task.getCurrentCompleteCount() + task.getCurrentReceiversCount() >= task.getMaxReceiversCount()) {
             throw new NoPlaceLeftException();
         }
         task.setCurrentReceiversCount(task.getCurrentReceiversCount() + 1);
-        if(task.getCurrentCompleteCount() + task.getCurrentReceiversCount() == task.getMaxReceiversCount()) {
+        if(task.getCurrentReceiversCount() == task.getMaxReceiversCount()) {
             task.setTaskState(Task.TaskState.WAITTING_FOR_COMPLETED);
         }
         taskMapper.update(task);
@@ -81,7 +80,7 @@ public class TaskService {
      * 为一个任务添加新的提交者
      * @param taskId
      */
-    public void addCommitter(int taskId, String committion) {
+    void addCommitter(int taskId, String committion) {
         Task task = taskMapper.loadById(taskId);
         task.setCurrentCompleteCount(task.getCurrentCompleteCount() + 1);
         if(task.getCurrentCompleteCount() == task.getMaxReceiversCount()) {
@@ -91,9 +90,46 @@ public class TaskService {
         taskMapper.update(task);
     }
 
-    public void checkTask(int userId, int taskId){
+    public void checkTask(int taskId){
         Task task = taskMapper.loadById(taskId);
         task.setTaskState(Task.TaskState.COMPLETED_NORMALLY);
+        transactionService.afterTaskCheck(taskId);
+    }
 
+    public void cancelTask(int taskId) {
+        Task task = taskMapper.loadById(taskId);
+        if(task.getTaskState() != Task.TaskState.WAITTING_FOR_RECEIVED ||
+                task.getTaskState() != Task.TaskState.WAITTING_FOR_COMPLETED) {
+            return;
+        }
+        transactionService.afterTaskCancel(taskId);
+    }
+
+    int getAmount(int taskId) {
+        return taskMapper.loadById(taskId).getTaskPrice();
+    }
+
+    void removeReceiver(int taskId) {
+        Task task = taskMapper.loadById(taskId);
+        if(task.getCurrentReceiversCount() == task.getMaxReceiversCount()) {
+            task.setTaskState(Task.TaskState.WAITTING_FOR_RECEIVED);
+        }
+        task.setCurrentReceiversCount(task.getCurrentReceiversCount() - 1);
+    }
+
+    int[] getUserStatisticsData(int userId) {
+        int[] res = new int[2];
+        List<Task> tasks = taskMapper.getTaskListByPublisher(userId);
+        tasks.forEach(e -> {
+            if(e.getTaskState() == Task.TaskState.WAITTING_FOR_RECEIVED ||
+                    e.getTaskState() == Task.TaskState.WAITTING_FOR_COMPLETED ||
+                    e.getTaskState() == Task.TaskState.WAITTING_FOR_CHECKED) {
+                res[0]++;
+            }
+            if(e.getTaskState() == Task.TaskState.COMPLETED_NORMALLY) {
+                res[1]++;
+            }
+        });
+        return res;
     }
 }

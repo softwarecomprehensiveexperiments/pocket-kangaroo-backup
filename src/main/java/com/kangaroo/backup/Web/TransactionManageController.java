@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 
 @RestController
 public class TransactionManageController extends BaseController{
@@ -54,4 +53,14 @@ public class TransactionManageController extends BaseController{
         }
         return dto;
     }
+
+    @RequestMapping(value = "transaction/{transactionId}", method = RequestMethod.DELETE)
+    public PureStateDTO commitTransaction(@PathVariable int transactionId) {
+        PureStateDTO dto = new PureStateDTO();
+        dto.setSuccess(false);
+        transactionService.cancelTransaction(transactionId);
+        dto.setSuccess(true);
+        return dto;
+    }
+
 }

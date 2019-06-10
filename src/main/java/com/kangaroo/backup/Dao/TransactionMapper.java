@@ -19,10 +19,14 @@ public interface TransactionMapper {
     void deleteTransaction(int transactionId);
 
 
-
-    //int getCountByTaskIdAndState(int taskId, int state);
+    /**
+     * NEW
+     */
+    List<Transaction> getAllByUserId(int userId);
 
     List<Transaction> getTransactionsByTaskId(int taskId);
-    int getCountByReceiverIdAndTaskId(int receiverId, int taskId);
-    int getCountByPublisherIdAndTaskId(int publisherId, int taskId);
+
+    Transaction getByUserIdAndTaskId(int userId, int taskId);
+
+
 }

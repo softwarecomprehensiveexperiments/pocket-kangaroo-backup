@@ -6,15 +6,25 @@ import java.util.Date;
  * PO/DO class.
  */
 public class User extends BaseDomain {
+
     private static final long serialVersionUID = -9085312745591431751L;
+
     private int userId;
+
     private String userPhone;
+
     private String userName;
+
     private String userPassword;
+
     private int userSex;
+
     private int userProperties;
+
     private String userIcon;
+
     private String userLastIp;
+
     private Date userLastDate;
 
     public static class Sex {
@@ -24,27 +34,6 @@ public class User extends BaseDomain {
     }
 
     public User() {}
-
-    public User(int userId, String userPhone, String userName, String userPassword, int userSex) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.userPhone = userPhone;
-        this.userSex = userSex;
-        this.userProperties = 0;
-        this.userIcon = null;
-        this.userLastIp = null;
-    }
-
-    public User(String userPhone, String userName, String userPassword, int userSex) {
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.userPhone = userPhone;
-        this.userSex = userSex;
-        this.userProperties = 0;
-        this.userIcon = null;
-        this.userLastIp = null;
-    }
 
     public int getUserId() {
         return userId;
