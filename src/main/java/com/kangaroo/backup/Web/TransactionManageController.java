@@ -1,6 +1,6 @@
 package com.kangaroo.backup.Web;
 
-import com.kangaroo.backup.DTO.PureStateDTO;
+import com.kangaroo.backup.DTO.*;
 import com.kangaroo.backup.Exception.DuplicateReceiveException;
 import com.kangaroo.backup.Exception.NoCurrentUserException;
 import com.kangaroo.backup.Exception.NoPlaceLeftException;
@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
+@RequestMapping(value = "/transaction")
 public class TransactionManageController extends BaseController{
 
     private TransactionService transactionService;
@@ -20,7 +22,7 @@ public class TransactionManageController extends BaseController{
         this.transactionService = transactionService;
     }
 
-    @RequestMapping(value = "/transaction", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public PureStateDTO createTransaction(@RequestParam int task_id, HttpServletRequest request) {
         PureStateDTO dto = new PureStateDTO();
         dto.setSuccess(false);
@@ -39,7 +41,7 @@ public class TransactionManageController extends BaseController{
         return dto;
     }
 
-    @RequestMapping(value = "transaction/{transactionId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.PUT)
     public PureStateDTO commitTransaction(@PathVariable int transactionId, @RequestParam String committion, HttpServletRequest request) {
         PureStateDTO dto = new PureStateDTO();
         dto.setSuccess(false);
@@ -54,7 +56,7 @@ public class TransactionManageController extends BaseController{
         return dto;
     }
 
-    @RequestMapping(value = "transaction/{transactionId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{transactionId}", method = RequestMethod.DELETE)
     public PureStateDTO commitTransaction(@PathVariable int transactionId) {
         PureStateDTO dto = new PureStateDTO();
         dto.setSuccess(false);
@@ -63,4 +65,66 @@ public class TransactionManageController extends BaseController{
         return dto;
     }
 
+    @RequestMapping(value = "/short/receive_doing", method = RequestMethod.GET)
+    public QueryResult<TransactionSetResultDTO<ShortTransactionOutputDTO>> queryShortDoing(HttpServletRequest request) {
+        QueryResult<TransactionSetResultDTO<ShortTransactionOutputDTO>> result = new QueryResult<>();
+        result.setSuccess(false);
+        try {
+            int userId = getCurrentUserId(request);
+            List<ShortTransactionOutputDTO> dtos = transactionService.queryShortTransactionDoing(userId);
+            TransactionSetResultDTO<ShortTransactionOutputDTO> dto = new TransactionSetResultDTO<>();
+            dto.setResultSet(dtos);
+            dto.setCount(dtos.size());
+            result.setT(dto);
+        } catch (NoCurrentUserException e) {
+            result.setDescription("认证未知错误");
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/short/receive_completed", method = RequestMethod.GET)
+    public QueryResult<TransactionSetResultDTO<ShortTransactionOutputDTO>> queryShortComplete(HttpServletRequest request) {
+        QueryResult<TransactionSetResultDTO<ShortTransactionOutputDTO>> result = new QueryResult<>();
+        result.setSuccess(false);
+        try {
+            int userId = getCurrentUserId(request);
+            List<ShortTransactionOutputDTO> dtos = transactionService.queryShortTransactionComplete(userId);
+            TransactionSetResultDTO<ShortTransactionOutputDTO> dto = new TransactionSetResultDTO<>();
+            dto.setResultSet(dtos);
+            dto.setCount(dtos.size());
+            result.setT(dto);
+        } catch (NoCurrentUserException e) {
+            result.setDescription("认证未知错误");
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/short/all", method = RequestMethod.GET)
+    public QueryResult<TransactionSetResultDTO<ShortTransactionOutputDTO>> queryShortAll(HttpServletRequest request) {
+        QueryResult<TransactionSetResultDTO<ShortTransactionOutputDTO>> result = new QueryResult<>();
+        result.setSuccess(false);
+        try {
+            int userId = getCurrentUserId(request);
+            List<ShortTransactionOutputDTO> dtos = transactionService.queryShortTransactionAll(userId);
+            TransactionSetResultDTO<ShortTransactionOutputDTO> dto = new TransactionSetResultDTO<>();
+            dto.setResultSet(dtos);
+            dto.setCount(dtos.size());
+            result.setT(dto);
+        } catch (NoCurrentUserException e) {
+            result.setDescription("认证未知错误");
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/detail/{transactionId}", method = RequestMethod.GET)
+    public QueryResult<TransactionDetailOutputDTO> queryDetail(@PathVariable int transactionId) {
+        QueryResult<TransactionDetailOutputDTO> result = new QueryResult<>();
+        result.setSuccess(false);
+        result.setT(transactionService.queryDetails(transactionId));
+        result.setSuccess(true);
+        return result;
+    }
 }

@@ -1,14 +1,12 @@
 package com.kangaroo.backup.DTO;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kangaroo.backup.Domain.Task;
 import com.kangaroo.backup.Utils.DateConvertUtils;
 import org.springframework.beans.BeanUtils;
 
-import java.util.Date;
 
-public class ShortTaskOutputDTO {
+public class PublicShortTaskDTO {
 
     @JsonProperty("task_id")
     private int taskId;
@@ -37,19 +35,7 @@ public class ShortTaskOutputDTO {
     @JsonProperty("current_receivers_count")
     private int currentReceiversCount;
 
-    @JsonProperty("current_complete_count")
-    private int currentCompleteCount;
-
-    @JsonProperty("overdue_count")
-    private int overdueCount;
-
-    @JsonProperty("task_state")
-    private String taskState;
-
-    @JsonProperty("task_state_code")
-    private int taskStateCode;
-
-    public ShortTaskOutputDTO() {
+    public PublicShortTaskDTO() {
     }
 
     public int getTaskId() {
@@ -124,48 +110,12 @@ public class ShortTaskOutputDTO {
         this.currentReceiversCount = currentReceiversCount;
     }
 
-    public int getCurrentCompleteCount() {
-        return currentCompleteCount;
-    }
-
-    public void setCurrentCompleteCount(int currentCompleteCount) {
-        this.currentCompleteCount = currentCompleteCount;
-    }
-
-    public int getOverdueCount() {
-        return overdueCount;
-    }
-
-    public void setOverdueCount(int overdueCount) {
-        this.overdueCount = overdueCount;
-    }
-
-    public String getTaskState() {
-        return taskState;
-    }
-
-    public void setTaskState(String taskState) {
-        this.taskState = taskState;
-    }
-
-    public int getTaskStateCode() {
-        return taskStateCode;
-    }
-
-    public void setTaskStateCode(int taskStateCode) {
-        this.taskStateCode = taskStateCode;
-    }
-
-    public static ShortTaskOutputDTO fromTask(Task task) {
-        ShortTaskOutputDTO dto = new ShortTaskOutputDTO();
+    public static PublicShortTaskDTO fromTask(Task task) {
+        PublicShortTaskDTO dto = new PublicShortTaskDTO();
         BeanUtils.copyProperties(task, dto);
         dto.setTaskShortDescription(task.getTaskContent().substring(0, 10) + "...");
         dto.setTaskPublishDateString(DateConvertUtils.dateToString(task.getTaskPublishDate()));
         dto.setTaskDeadlineDateString(DateConvertUtils.dateToString(task.getTaskDeadLineDate()));
-        dto.setTaskState(Task.TaskState.STATE_CHINESE_SET[task.getTaskState()]);
-        if(task.getTaskDeadLineDate().before(new Date())) {
-            dto.setOverdueCount(task.getCurrentReceiversCount() - task.getCurrentCompleteCount());
-        }
         return dto;
     }
 }

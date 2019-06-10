@@ -123,4 +123,9 @@ public class UserService {
         userMapper.update(user);
         return user;
     }
+
+    public String getName(int userId) {
+        User user = userMapper.loadById(userId);
+        return user.getName();
+    }
 }

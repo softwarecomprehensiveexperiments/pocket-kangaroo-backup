@@ -54,6 +54,11 @@ public class Task extends BaseDomain {
      */
 	private String result;
 
+    /**
+     * new
+     */
+    private String receivers;
+
     public static class TaskType {
 
         public static final String[] TYPE_CHINESE_SET = {"跑腿", "分享", "调查问卷"};
@@ -83,6 +88,8 @@ public class Task extends BaseDomain {
 
         public static final List<Integer> COMPLETED_STATE_SET;
 
+        public static final List<Integer> ALL_STATE_SET;
+
         static {
             DOING_STATE_SET = new LinkedList<>();
             DOING_STATE_SET.add(TaskState.WAITTING_FOR_RECEIVED);
@@ -91,7 +98,14 @@ public class Task extends BaseDomain {
 
             COMPLETED_STATE_SET = new LinkedList<>();
             COMPLETED_STATE_SET.add(TaskState.COMPLETED_NORMALLY);
-            COMPLETED_STATE_SET.add(TaskState.CANCELED);
+
+            ALL_STATE_SET = new LinkedList<>();
+            ALL_STATE_SET.add(TaskState.WAITTING_FOR_RECEIVED);
+            ALL_STATE_SET.add(TaskState.WAITTING_FOR_COMPLETED);
+            ALL_STATE_SET.add(TaskState.WAITTING_FOR_CHECKED);
+            ALL_STATE_SET.add(TaskState.COMPLETED_NORMALLY);
+            ALL_STATE_SET.add(TaskState.CANCELED);
+
         }
     }
 
@@ -215,5 +229,13 @@ public class Task extends BaseDomain {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getReceivers() {
+        return receivers;
+    }
+
+    public void setReceivers(String receivers) {
+        this.receivers = receivers;
     }
 }

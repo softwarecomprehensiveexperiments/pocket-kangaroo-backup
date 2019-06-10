@@ -14,7 +14,8 @@ public interface TaskMapper {
 
     List<Task> getTaskListByTitle(String taskTitle);
 
-    List<Task> getTaskListByType(String taskType);
+    //错了，taskType是int类型
+    //List<Task> getTaskListByType(String taskType);
 
     List<Task> getTaskListByPublisher(int taskPublisherId);
 
@@ -28,13 +29,9 @@ public interface TaskMapper {
 
 
     /**
-     *
-     * @param publisherId
-     * @param states
-     * @return sort in release DateTime order.
+     * New
      */
-    List<Task> loadByPublisherIdAndStates(int publisherId, List<Integer> states);
-
+    List<Task> getTaskListByType(int taskType);
     Task loadById(int taskId);
 
 }

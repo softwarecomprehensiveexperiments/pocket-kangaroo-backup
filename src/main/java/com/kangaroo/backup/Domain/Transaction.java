@@ -3,6 +3,8 @@ package com.kangaroo.backup.Domain;
 import com.kangaroo.backup.Constant.DateConstant;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * PO/DO class
@@ -30,12 +32,44 @@ public class Transaction extends BaseDomain{
     private Date transactionCompleteTime;
 
     public static class TransactionState {
-        public static final String[] STATE_CHINESE_SET = {"进行中", "等待发布者确认", "已完成", "已逾期", "已取消"};
+
+        public static final String[] STATE_CHINESE_SET = {"进行中", "等待发布者确认", "已完成", "已逾期", "已取消", "任务已被发布者取消"};
+
         public static final int DOING = 0;
+
         public static final int WAITTING_FOR_PUBLISHER_CHECK = 1;
+
         public static final int COMPLETED_NORMALLY = 2;
+
         public static final int OVERDUE = 3;
+
         public static final int CANCELED = 4;
+
+        public static final int CANCELED_BY_PUBLISHER = 5;
+
+        public static final List<Integer> DOING_STATE_SET;
+
+        public static final List<Integer> COMPLETED_STATE_SET;
+
+        public static final List<Integer> ALL_STATE_SET;
+
+        static {
+            DOING_STATE_SET = new LinkedList<>();
+            DOING_STATE_SET.add(TransactionState.DOING);
+            DOING_STATE_SET.add(TransactionState.WAITTING_FOR_PUBLISHER_CHECK);
+
+            COMPLETED_STATE_SET = new LinkedList<>();
+            COMPLETED_STATE_SET.add(TransactionState.COMPLETED_NORMALLY);
+
+            ALL_STATE_SET = new LinkedList<>();
+            ALL_STATE_SET.add(TransactionState.DOING);
+            ALL_STATE_SET.add(TransactionState.WAITTING_FOR_PUBLISHER_CHECK);
+            ALL_STATE_SET.add(TransactionState.COMPLETED_NORMALLY);
+            ALL_STATE_SET.add(TransactionState.OVERDUE);
+            ALL_STATE_SET.add(TransactionState.CANCELED);
+            ALL_STATE_SET.add(TransactionState.CANCELED_BY_PUBLISHER);
+
+        }
     }
 
     public Transaction() {

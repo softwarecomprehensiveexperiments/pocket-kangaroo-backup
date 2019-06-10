@@ -22,11 +22,11 @@ public interface TransactionMapper {
     /**
      * NEW
      */
-    List<Transaction> getAllByUserId(int userId);
+    List<Transaction> getTransactionsByUserId(int userId);
 
     List<Transaction> getTransactionsByTaskId(int taskId);
 
-    Transaction getByUserIdAndTaskId(int userId, int taskId);
+    Transaction getTransactionsByUserIdAndTaskId(int userId, int taskId);
 
 
 }

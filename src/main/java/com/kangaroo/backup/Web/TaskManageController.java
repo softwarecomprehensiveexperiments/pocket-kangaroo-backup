@@ -2,6 +2,7 @@ package com.kangaroo.backup.Web;
 
 import com.kangaroo.backup.DTO.*;
 import com.kangaroo.backup.Exception.NoCurrentUserException;
+import com.kangaroo.backup.Exception.NoSuchTaskExpcetion;
 import com.kangaroo.backup.Exception.NotEnoughBalanceException;
 import com.kangaroo.backup.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,22 @@ public class TaskManageController extends BaseController{
     @Autowired
     public void setTaskService(TaskService taskService) {
         this.taskService = taskService;
+    }
+
+    /**
+     * 获取广场任务
+     */
+    @RequestMapping(value = "/public", method = RequestMethod.GET)
+    public QueryResult<TaskSetResultDTO<PublicShortTaskDTO>> getPublicTasks() {
+        QueryResult<TaskSetResultDTO<PublicShortTaskDTO>> result = new QueryResult<>();
+        result.setSuccess(false);
+        TaskSetResultDTO<PublicShortTaskDTO> dto = new TaskSetResultDTO<>();
+        List<PublicShortTaskDTO> dtos = taskService.getPublicTasks();
+        dto.setResultSet(dtos);
+        dto.setCount(dtos.size());
+        result.setT(dto);
+        result.setSuccess(true);
+        return result;
     }
 
     /**
@@ -88,7 +105,7 @@ public class TaskManageController extends BaseController{
         result.setSuccess(false);
         try {
             int userId = getCurrentUserId(request);
-            List<ShortTaskOutputDTO> shortTaskOutputDTOS = taskService.queryReleaseDoingTask(userId);
+            List<ShortTaskOutputDTO> shortTaskOutputDTOS = taskService.queryShortTasksDoing(userId);
             TaskSetResultDTO<ShortTaskOutputDTO> resultDTO = new TaskSetResultDTO<>();
             resultDTO.setResultSet(shortTaskOutputDTOS);
             resultDTO.setCount(shortTaskOutputDTOS.size());
@@ -100,6 +117,54 @@ public class TaskManageController extends BaseController{
         return result;
     }
 
+    @RequestMapping(value = "/short/release_completed", method = RequestMethod.GET)
+    public QueryResult<TaskSetResultDTO<ShortTaskOutputDTO>> queryReleaseComplete(HttpServletRequest request) {
+        QueryResult<TaskSetResultDTO<ShortTaskOutputDTO>> result = new QueryResult<>();
+        result.setSuccess(false);
+        try {
+            int userId = getCurrentUserId(request);
+            List<ShortTaskOutputDTO> shortTaskOutputDTOS = taskService.queryShortTasksComplete(userId);
+            TaskSetResultDTO<ShortTaskOutputDTO> resultDTO = new TaskSetResultDTO<>();
+            resultDTO.setResultSet(shortTaskOutputDTOS);
+            resultDTO.setCount(shortTaskOutputDTOS.size());
+            result.setSuccess(true);
+        } catch (NoCurrentUserException e) {
+            result.setDescription("认证未知错误");
+            e.printStackTrace();
+        }
+        return result;
+    }
 
+    @RequestMapping(value = "/short/all", method = RequestMethod.GET)
+    public QueryResult<TaskSetResultDTO<ShortTaskOutputDTO>> queryReleaseAll(HttpServletRequest request) {
+        QueryResult<TaskSetResultDTO<ShortTaskOutputDTO>> result = new QueryResult<>();
+        result.setSuccess(false);
+        try {
+            int userId = getCurrentUserId(request);
+            List<ShortTaskOutputDTO> shortTaskOutputDTOS = taskService.queryShortTasksAll(userId);
+            TaskSetResultDTO<ShortTaskOutputDTO> resultDTO = new TaskSetResultDTO<>();
+            resultDTO.setResultSet(shortTaskOutputDTOS);
+            resultDTO.setCount(shortTaskOutputDTOS.size());
+            result.setSuccess(true);
+        } catch (NoCurrentUserException e) {
+            result.setDescription("认证未知错误");
+            e.printStackTrace();
+        }
+        return result;
+    }
 
+    @RequestMapping(value = "/detail/{taskId}", method = RequestMethod.GET)
+    public QueryResult<TaskDetailOutputDTO> queryTaskDetail(@PathVariable int taskId) {
+        QueryResult<TaskDetailOutputDTO> result = new QueryResult<>();
+        result.setSuccess(false);
+        try {
+            TaskDetailOutputDTO detailOutputDTO = taskService.queryTaskDetail(taskId);
+            result.setT(detailOutputDTO);
+            result.setSuccess(true);
+        } catch (NoSuchTaskExpcetion noSuchTaskExpcetion) {
+            result.setDescription("找不到该任务");
+            noSuchTaskExpcetion.printStackTrace();
+        }
+        return result;
+    }
 }
