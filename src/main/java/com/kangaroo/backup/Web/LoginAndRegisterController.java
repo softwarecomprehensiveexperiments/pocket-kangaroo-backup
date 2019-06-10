@@ -26,7 +26,7 @@ import java.util.Date;
  * 负责响应登入、登出和注册的控制器类
  */
 @RestController
-@RequestMapping(value = "/user", method = RequestMethod.POST)
+@RequestMapping(value = "/user")
 public class LoginAndRegisterController extends BaseController {
 
     private UserService userService;
@@ -41,7 +41,7 @@ public class LoginAndRegisterController extends BaseController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/register", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/register", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
     public PureStateDTO register(@RequestBody RegisterUserInputDTO registerUserInputDTO) {
         logger.info("Register request received.");
         PureStateDTO pureStateDTO = new PureStateDTO();
@@ -64,7 +64,7 @@ public class LoginAndRegisterController extends BaseController {
         return pureStateDTO;
     }
 
-    @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8", method = RequestMethod.PUT)
     public QueryResult<UserOutputDTO> login(@RequestBody LoginCommandInputDTO loginCommand,
                                             HttpServletRequest request, HttpServletResponse response) {
         logger.info("Login request received from " + request.getLocalAddr() + ".");
@@ -118,7 +118,7 @@ public class LoginAndRegisterController extends BaseController {
      * @param request 从request头部提取token信息
      * @return 返回处理结果
      */
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/logout", method = RequestMethod.PUT)
     public PureStateDTO logout(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         long id = JWTUtils.getPreloadId(token, TokenPreloadDTO.class);

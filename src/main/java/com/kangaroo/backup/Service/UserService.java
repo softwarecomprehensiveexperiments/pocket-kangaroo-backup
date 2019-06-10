@@ -84,15 +84,7 @@ public class UserService {
 
     public User updateUser(int id, UpdateUserInputDTO updateUserInputDTO) {
         User user = userMapper.loadById(id);
-        User user1 = userMapper.loadByName("chenjifan");
-        logger.info("up11 : [{}]", user1.getUserId());
-        logger.info("up : [{}]", updateUserInputDTO.getUserName());
-        logger.info("up22 : [{}]", id);
-        logger.info("up223 : [{}]", user.getName());
-        logger.info("up224 : [{}]", user1.getPassword());
-        logger.info("up2 : [{}]", user.getUserId());
-        logger.info("up3 : [{}]", user.getPassword());
-        if(updateUserInputDTO.getUserOldPassword() != null || !user.getPassword().equals(updateUserInputDTO.getUserOldPassword())) {
+        if(updateUserInputDTO.getUserOldPassword() != null && !user.getPassword().equals(updateUserInputDTO.getUserOldPassword())) {
             return null;
         }
         user.setName(updateUserInputDTO.getUserName());

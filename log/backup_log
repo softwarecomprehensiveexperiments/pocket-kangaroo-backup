@@ -2896,3 +2896,414 @@ java.lang.NullPointerException: null
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
 	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
 
+2019-06-08 21:31:03.280  INFO 8596 --- [main] c.k.backup.KangarooBackupApplication     : Starting KangarooBackupApplication on DESKTOP-GDF7UPU with PID 8596 (C:\Users\chenjifff\Desktop\Kangaroo\pocket-kangaroo-backup\target\classes started by chenjifff in C:\Users\chenjifff\Desktop\Kangaroo\pocket-kangaroo-backup)
+2019-06-08 21:31:03.285  INFO 8596 --- [main] c.k.backup.KangarooBackupApplication     : No active profile set, falling back to default profiles: default
+2019-06-08 21:31:04.671  WARN 8596 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'loginLogMapper' and 'com.kangaroo.backup.Dao.LoginLogMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:31:04.673  WARN 8596 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'questionnarieMapper' and 'com.kangaroo.backup.Dao.QuestionnarieMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:31:04.674  WARN 8596 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'taskMapper' and 'com.kangaroo.backup.Dao.TaskMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:31:04.676  WARN 8596 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'transactionMapper' and 'com.kangaroo.backup.Dao.TransactionMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:31:04.677  WARN 8596 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'userMapper' and 'com.kangaroo.backup.Dao.UserMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:31:04.677  WARN 8596 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.kangaroo.backup.Dao]' package. Please check your configuration.
+2019-06-08 21:31:04.947  INFO 8596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-08 21:31:04.952  INFO 8596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-08 21:31:05.006  INFO 8596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35ms. Found 0 repository interfaces.
+2019-06-08 21:31:05.538  INFO 8596 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3f11de2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-08 21:31:06.510  INFO 8596 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-08 21:31:06.554  INFO 8596 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-08 21:31:06.555  INFO 8596 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-08 21:31:06.858  WARN 8596 --- [main] o.a.tomcat.util.scan.StandardJarScanner  : Failed to scan [file:/C:/Users/chenjifff/.m2/repository/com/mchange/c3p0/0.9.5.2/mchange-commons-java-0.2.11.jar] from classloader hierarchy
+
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:266) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:83) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) [na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) [na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:427) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:180) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) [spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at com.kangaroo.backup.KangarooBackupApplication.main(KangarooBackupApplication.java:18) [classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:558) [spring-boot-maven-plugin-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor41.newInstance(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488) ~[na:na]
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	... 52 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\chenjifff\.m2\repository\com\mchange\c3p0\0.9.5.2\mchange-commons-java-0.2.11.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:194) ~[na:na]
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1755) ~[na:na]
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1220) ~[na:na]
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:727) ~[na:na]
+	at java.base/java.util.zip.ZipFile$CleanableResource.get(ZipFile.java:845) ~[na:na]
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:245) ~[na:na]
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:175) ~[na:na]
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:341) ~[na:na]
+	... 56 common frames omitted
+
+2019-06-08 21:31:06.870  INFO 8596 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-06-08 21:31:06.894  INFO 8596 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-08 21:31:06.895  INFO 8596 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3443 ms
+2019-06-08 21:31:07.686  INFO 8596 --- [MLog-Init-Reporter] com.mchange.v2.log.MLog                  : MLog clients using slf4j logging.
+2019-06-08 21:31:07.743  INFO 8596 --- [main] com.mchange.v2.c3p0.C3P0Registry         : Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2019-06-08 21:31:08.889  INFO 8596 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-08 21:31:09.629  INFO 8596 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-08 21:31:09.637  INFO 8596 --- [main] c.k.backup.KangarooBackupApplication     : Started KangarooBackupApplication in 7.029 seconds (JVM running for 12.938)
+2019-06-08 21:31:14.834  INFO 8596 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-08 21:31:14.834  INFO 8596 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-08 21:31:14.850  INFO 8596 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2019-06-08 21:31:14.900  INFO 8596 --- [http-nio-8080-exec-1] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:31:15.395  INFO 8596 --- [http-nio-8080-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-06-08 21:31:15.397  INFO 8596 --- [http-nio-8080-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-06-08 21:31:16.324  INFO 8596 --- [http-nio-8080-exec-1] c.m.v.c.i.AbstractPoolBackedDataSource   : Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1b614fma3fc8dw33ssdhn|6f6b0b8, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.cj.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1b614fma3fc8dw33ssdhn|6f6b0b8, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://localhost:3306?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {password=******, user=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2019-06-08 21:31:16.659  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up11 : [1]
+2019-06-08 21:31:16.660  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up : [chenjifan22]
+2019-06-08 21:31:16.660  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up22 : [1]
+2019-06-08 21:31:16.660  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up223 : [chenjifan]
+2019-06-08 21:31:16.660  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up224 : [123456chen]
+2019-06-08 21:31:16.661  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up2 : [1]
+2019-06-08 21:31:16.661  INFO 8596 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up3 : [123456chen]
+2019-06-08 21:32:39.758  INFO 8848 --- [main] c.k.backup.KangarooBackupApplication     : Starting KangarooBackupApplication on DESKTOP-GDF7UPU with PID 8848 (C:\Users\chenjifff\Desktop\Kangaroo\pocket-kangaroo-backup\target\classes started by chenjifff in C:\Users\chenjifff\Desktop\Kangaroo\pocket-kangaroo-backup)
+2019-06-08 21:32:39.777  INFO 8848 --- [main] c.k.backup.KangarooBackupApplication     : No active profile set, falling back to default profiles: default
+2019-06-08 21:32:40.964  WARN 8848 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'loginLogMapper' and 'com.kangaroo.backup.Dao.LoginLogMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:32:40.964  WARN 8848 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'questionnarieMapper' and 'com.kangaroo.backup.Dao.QuestionnarieMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:32:40.965  WARN 8848 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'taskMapper' and 'com.kangaroo.backup.Dao.TaskMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:32:40.965  WARN 8848 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'transactionMapper' and 'com.kangaroo.backup.Dao.TransactionMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:32:40.965  WARN 8848 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'userMapper' and 'com.kangaroo.backup.Dao.UserMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:32:40.966  WARN 8848 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.kangaroo.backup.Dao]' package. Please check your configuration.
+2019-06-08 21:32:41.222  INFO 8848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-08 21:32:41.228  INFO 8848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-08 21:32:41.279  INFO 8848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
+2019-06-08 21:32:41.896  INFO 8848 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4cbde192] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-08 21:32:42.824  INFO 8848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-08 21:32:42.872  INFO 8848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-08 21:32:42.873  INFO 8848 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-08 21:32:43.152  WARN 8848 --- [main] o.a.tomcat.util.scan.StandardJarScanner  : Failed to scan [file:/C:/Users/chenjifff/.m2/repository/com/mchange/c3p0/0.9.5.2/mchange-commons-java-0.2.11.jar] from classloader hierarchy
+
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:266) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:83) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) [na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) [na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:427) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:180) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) [spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at com.kangaroo.backup.KangarooBackupApplication.main(KangarooBackupApplication.java:18) [classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:558) [spring-boot-maven-plugin-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor41.newInstance(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488) ~[na:na]
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	... 52 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\chenjifff\.m2\repository\com\mchange\c3p0\0.9.5.2\mchange-commons-java-0.2.11.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:194) ~[na:na]
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1755) ~[na:na]
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1220) ~[na:na]
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:727) ~[na:na]
+	at java.base/java.util.zip.ZipFile$CleanableResource.get(ZipFile.java:845) ~[na:na]
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:245) ~[na:na]
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:175) ~[na:na]
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:341) ~[na:na]
+	... 56 common frames omitted
+
+2019-06-08 21:32:43.169  INFO 8848 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-06-08 21:32:43.174  INFO 8848 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-08 21:32:43.175  INFO 8848 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3258 ms
+2019-06-08 21:32:43.998  INFO 8848 --- [MLog-Init-Reporter] com.mchange.v2.log.MLog                  : MLog clients using slf4j logging.
+2019-06-08 21:32:44.035  INFO 8848 --- [main] com.mchange.v2.c3p0.C3P0Registry         : Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2019-06-08 21:32:44.979  INFO 8848 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-08 21:32:45.519  INFO 8848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-08 21:32:45.526  INFO 8848 --- [main] c.k.backup.KangarooBackupApplication     : Started KangarooBackupApplication in 6.649 seconds (JVM running for 14.881)
+2019-06-08 21:32:54.229  INFO 8848 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-08 21:32:54.230  INFO 8848 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-08 21:32:54.243  INFO 8848 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2019-06-08 21:32:54.260  INFO 8848 --- [http-nio-8080-exec-1] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:32:54.614  INFO 8848 --- [http-nio-8080-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-06-08 21:32:54.615  INFO 8848 --- [http-nio-8080-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-06-08 21:32:55.537  INFO 8848 --- [http-nio-8080-exec-1] c.m.v.c.i.AbstractPoolBackedDataSource   : Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1b614fma3fcag6y15i5e6b|6d521700, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.cj.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1b614fma3fcag6y15i5e6b|6d521700, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://localhost:3306?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {password=******, user=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2019-06-08 21:32:55.891  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up11 : [1]
+2019-06-08 21:32:55.891  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up : [chenjifan22]
+2019-06-08 21:32:55.892  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up22 : [1]
+2019-06-08 21:32:55.892  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up223 : [chenjifan]
+2019-06-08 21:32:55.892  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up224 : [123456chen]
+2019-06-08 21:32:55.892  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up2 : [1]
+2019-06-08 21:32:55.893  INFO 8848 --- [http-nio-8080-exec-1] com.kangaroo.backup.Service.UserService  : up3 : [123456chen]
+2019-06-08 21:33:18.360  INFO 8848 --- [http-nio-8080-exec-3] c.k.b.Web.LoginAndRegisterController     : Login request received from 0:0:0:0:0:0:0:1.
+2019-06-08 21:33:45.543  INFO 8848 --- [http-nio-8080-exec-5] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:33:45.563 ERROR 8848 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at com.kangaroo.backup.Service.UserService.updateUser(UserService.java:88) ~[classes/:na]
+	at com.kangaroo.backup.Web.UserManagerController.updateUser(UserManagerController.java:48) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at com.kangaroo.backup.Web.AuthenticationFilter.doFilter(AuthenticationFilter.java:67) ~[classes/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1135) [na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
+
+2019-06-08 21:34:38.417  INFO 7020 --- [main] c.k.backup.KangarooBackupApplication     : Starting KangarooBackupApplication on DESKTOP-GDF7UPU with PID 7020 (C:\Users\chenjifff\Desktop\Kangaroo\pocket-kangaroo-backup\target\classes started by chenjifff in C:\Users\chenjifff\Desktop\Kangaroo\pocket-kangaroo-backup)
+2019-06-08 21:34:38.422  INFO 7020 --- [main] c.k.backup.KangarooBackupApplication     : No active profile set, falling back to default profiles: default
+2019-06-08 21:34:39.657  WARN 7020 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'loginLogMapper' and 'com.kangaroo.backup.Dao.LoginLogMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:34:39.658  WARN 7020 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'questionnarieMapper' and 'com.kangaroo.backup.Dao.QuestionnarieMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:34:39.658  WARN 7020 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'taskMapper' and 'com.kangaroo.backup.Dao.TaskMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:34:39.658  WARN 7020 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'transactionMapper' and 'com.kangaroo.backup.Dao.TransactionMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:34:39.659  WARN 7020 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Skipping MapperFactoryBean with name 'userMapper' and 'com.kangaroo.backup.Dao.UserMapper' mapperInterface. Bean already defined with the same name!
+2019-06-08 21:34:39.659  WARN 7020 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.kangaroo.backup.Dao]' package. Please check your configuration.
+2019-06-08 21:34:39.911  INFO 7020 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-08 21:34:39.914  INFO 7020 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-08 21:34:39.984  INFO 7020 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30ms. Found 0 repository interfaces.
+2019-06-08 21:34:40.697  INFO 7020 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$29c8e122] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-08 21:34:41.569  INFO 7020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-08 21:34:41.615  INFO 7020 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-08 21:34:41.616  INFO 7020 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-08 21:34:41.886  WARN 7020 --- [main] o.a.tomcat.util.scan.StandardJarScanner  : Failed to scan [file:/C:/Users/chenjifff/.m2/repository/com/mchange/c3p0/0.9.5.2/mchange-commons-java-0.2.11.jar] from classloader hierarchy
+
+java.io.IOException: java.lang.reflect.InvocationTargetException
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:212) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:266) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:83) [tomcat-embed-jasper-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5139) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) [na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) [na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140) [na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455) [tomcat-embed-core-9.0.17.jar:9.0.17]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:427) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:180) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) [spring-context-5.1.6.RELEASE.jar:5.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at com.kangaroo.backup.KangarooBackupApplication.main(KangarooBackupApplication.java:18) [classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:558) [spring-boot-maven-plugin-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.GeneratedConstructorAccessor41.newInstance(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488) ~[na:na]
+	at org.apache.tomcat.util.compat.Jre9Compat.jarFileNewInstance(Jre9Compat.java:209) ~[tomcat-embed-core-9.0.17.jar:9.0.17]
+	... 52 common frames omitted
+Caused by: java.nio.file.NoSuchFileException: C:\Users\chenjifff\.m2\repository\com\mchange\c3p0\0.9.5.2\mchange-commons-java-0.2.11.jar
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:194) ~[na:na]
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1755) ~[na:na]
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1220) ~[na:na]
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:727) ~[na:na]
+	at java.base/java.util.zip.ZipFile$CleanableResource.get(ZipFile.java:845) ~[na:na]
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:245) ~[na:na]
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:175) ~[na:na]
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:341) ~[na:na]
+	... 56 common frames omitted
+
+2019-06-08 21:34:41.903  INFO 7020 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-06-08 21:34:41.910  INFO 7020 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-08 21:34:41.910  INFO 7020 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3344 ms
+2019-06-08 21:34:42.683  INFO 7020 --- [MLog-Init-Reporter] com.mchange.v2.log.MLog                  : MLog clients using slf4j logging.
+2019-06-08 21:34:42.738  INFO 7020 --- [main] com.mchange.v2.c3p0.C3P0Registry         : Initializing c3p0-0.9.5.2 [built 08-December-2015 22:06:04 -0800; debug? true; trace: 10]
+2019-06-08 21:34:43.656  INFO 7020 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-08 21:34:44.255  INFO 7020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-08 21:34:44.263  INFO 7020 --- [main] c.k.backup.KangarooBackupApplication     : Started KangarooBackupApplication in 6.569 seconds (JVM running for 14.395)
+2019-06-08 21:34:48.743  INFO 7020 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-08 21:34:48.743  INFO 7020 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-08 21:34:48.759  INFO 7020 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2019-06-08 21:34:48.784  INFO 7020 --- [http-nio-8080-exec-1] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:34:49.208  INFO 7020 --- [http-nio-8080-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2019-06-08 21:34:49.210  INFO 7020 --- [http-nio-8080-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2019-06-08 21:34:50.245  INFO 7020 --- [http-nio-8080-exec-1] c.m.v.c.i.AbstractPoolBackedDataSource   : Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1b614fma3fcczs3gd5upr|5c83df36, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.cj.jdbc.Driver, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1b614fma3fcczs3gd5upr|5c83df36, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://localhost:3306?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {password=******, user=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+2019-06-08 21:34:56.402  INFO 7020 --- [http-nio-8080-exec-3] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:35:00.106  INFO 7020 --- [http-nio-8080-exec-4] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:35:11.877  INFO 7020 --- [http-nio-8080-exec-6] c.k.b.Web.LoginAndRegisterController     : Login request received from 0:0:0:0:0:0:0:1.
+2019-06-08 21:35:15.811  INFO 7020 --- [http-nio-8080-exec-8] c.k.b.Web.LoginAndRegisterController     : Login request received from 0:0:0:0:0:0:0:1.
+2019-06-08 21:35:32.821  INFO 7020 --- [http-nio-8080-exec-10] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:35:38.089  INFO 7020 --- [http-nio-8080-exec-2] c.k.backup.Web.AuthenticationFilter      : Url: /user/updateCurrentUser being filtering.
+2019-06-08 21:35:47.405  INFO 7020 --- [http-nio-8080-exec-4] c.k.b.Web.LoginAndRegisterController     : Login request received from 0:0:0:0:0:0:0:1.
+2019-06-08 21:35:51.154  INFO 7020 --- [http-nio-8080-exec-5] c.k.b.Web.LoginAndRegisterController     : Login request received from 0:0:0:0:0:0:0:1.

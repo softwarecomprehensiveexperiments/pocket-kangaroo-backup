@@ -12,7 +12,7 @@
         <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR"/>
         <result column="task_price" property="taskPrice" jdbcType="INTEGER"/>
         <result column="task_publisherId" property="taskPublisherId" jdbcType="INTEGER"/>
-        <result column="task_publishDate" property="taskPublishDate" jdbcType="TIMESTAMP"/>
+        <result column="task_publishDate" property="taskPublishDateS" jdbcType="TIMESTAMP"/>
         <result column="task_type" property="taskType" jdbcType="VARCHAR"/>
         <result column="task_completeDate" property="taskCompleteDate" jdbcType="TIMESTAMP"/>
         <result column="task_state" property="taskState" jdbcType="INTEGER"/>
@@ -102,7 +102,7 @@
     </select>
     <insert id="insert" parameterType="com.kangaroo.backup.Domain.Task">
         INSERT INTO kangaroo.task(task_title, task_deadLineDate, max_receiversCount, task_content, task_price, task_publisherId, task_publishDate, task_type, task_completeDate, task_state)
-        VALUES (#{taskTitle},#{taskDeadLineDate},#{maxReceiversCount},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskPublishDate},#{taskType},#{taskCompleteDate},#{taskSate})
+        VALUES (#{taskTitle},#{taskDeadLineDate},#{maxReceiversCount},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskPublishDateS},#{taskType},#{taskCompleteDate},#{taskSate})
     </insert>
     <update id="update" parameterType="com.kangaroo.backup.Domain.Task">
         UPDATE kangaroo.task
@@ -113,7 +113,7 @@
             <if test="taskContent!=null">task_content=#{taskContent},</if>
             <if test="taskPrice!=null">task_price=#{taskPrice},</if>
             <if test="taskPublisherId!=null">task_publisherId=#{taskPublisherId},</if>
-            <if test="taskPublishDate!=null">task_publishDate=#{taskPublishDate},</if>
+            <if test="taskPublishDateS!=null">task_publishDate=#{taskPublishDateS},</if>
             <if test="taskType!=null">task_type=#{taskType},</if>
             <if test="taskCompleteDate!=null">task_completeDate=#{taskCompleteDate},</if>
             <if test="taskSate!=null">task_state=#{taskSate}</if>

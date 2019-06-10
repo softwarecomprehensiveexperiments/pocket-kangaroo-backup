@@ -15,7 +15,7 @@
         <result column="user_lastDate" property="userLastDate" jdbcType="DATE"/>
     </resultMap>
     <sql id="Base_column_list">
-        user_id, user_phone, user_name, user_sex, user_icon, user_properties, user_lastIp, user_lastDate
+        user_id, user_phone, user_name, user_password, user_sex, user_icon, user_properties, user_lastIp, user_lastDate
     </sql>
     <select id="loadAll" resultMap="BaseResultMap">
         SELECT

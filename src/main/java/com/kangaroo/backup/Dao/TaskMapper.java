@@ -26,4 +26,15 @@ public interface TaskMapper {
 
     void delete(int taskId);
 
+
+    /**
+     *
+     * @param publisherId
+     * @param states
+     * @return sort in release DateTime order.
+     */
+    List<Task> loadByPublisherIdAndStates(int publisherId, List<Integer> states);
+
+    Task loadById(int taskId);
+
 }

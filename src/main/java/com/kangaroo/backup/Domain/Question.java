@@ -1,5 +1,7 @@
 package com.kangaroo.backup.Domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -9,18 +11,24 @@ public class Question extends BaseDomain{
 
     private static final long serialVersionUID = -5677371893965169309L;
 
+    @JsonProperty("question_id")
     private int questionId;
 
     /*是否增加外键以便联合task查询*/
+    //???感觉会出事
     private int taskId;
 
+    @JsonProperty("question_description")
     private String questionDescription;
 
+    @JsonProperty("if_multiple_select")
     private Boolean ifMultipleSelect;
 
+    @JsonProperty("options_count")
     private int optionsCount;
 
 //    private List<String> options;
+    @JsonProperty("options")
     private String options;
 
     public Question() {
