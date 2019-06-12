@@ -29,6 +29,7 @@ public class UserManageController extends BaseController {
 
     private AccountService accountService;
 
+    @Autowired
     public void setAccountService(AccountService accountService) {
         this.accountService = accountService;
     }

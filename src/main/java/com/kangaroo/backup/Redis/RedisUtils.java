@@ -1,4 +1,4 @@
-package com.kangaroo.backup.Utils;
+package com.kangaroo.backup.Redis;
 
 import com.kangaroo.backup.Constant.TokenConstant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 封装的Redis缓存管理类（目前可处理Set和String数据）
  *
- * 为了达到自动管理缓存的目的，内部封装了将一整个集合划分为多个小集合的功能
+ * 为了达到自动管理缓存Token的目的，内部封装了将一整个集合划分为多个小集合的功能
  * 每个小集合过期时间为设定的过期时间加一天，也就是服务器会多存放一天的过期信息
  * 可根据需要优化过期时间（颗粒度更小，相应库的条数会变多）
  */
@@ -27,8 +27,12 @@ public class RedisUtils {
      */
     private static final long EXTEND_DURATION_DAYS = 1;
 
-    @Autowired
     RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    public void setRedisTemplate(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 基础接口：集合添加元素接口

@@ -27,7 +27,6 @@ public interface TaskMapper {
 
     void delete(int taskId);
 
-
     /**
      * New
      */

@@ -9,9 +9,11 @@ import com.kangaroo.backup.Domain.Task;
 import com.kangaroo.backup.Exception.NoPlaceLeftException;
 import com.kangaroo.backup.Exception.NoSuchTaskExpcetion;
 import com.kangaroo.backup.Exception.NotEnoughBalanceException;
+import com.kangaroo.backup.RabbitMQ.RabbitSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Period;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +26,8 @@ public class TaskService {
     private AccountService accountService;
 
     private UserService userService;
+
+    private RabbitSender rabbitSender;
 
     @Autowired
     public void setTaskMapper(TaskMapper taskMapper) {
@@ -40,6 +44,10 @@ public class TaskService {
         this.userService = userService;
     }
 
+    @Autowired
+    public void setRabbitSender(RabbitSender rabbitSender) {
+        this.rabbitSender = rabbitSender;
+    }
     private TransactionService transactionService;
 
     @Autowired
@@ -50,7 +58,7 @@ public class TaskService {
     public List<PublicShortTaskDTO> getPublicTasks() {
         List<Task> tasks = taskMapper.getTaskListByType(Task.TaskState.WAITTING_FOR_RECEIVED);
         List<PublicShortTaskDTO> shortTaskDTOS = new LinkedList<>();
-        tasks.forEach(e -> {shortTaskDTOS.add(PublicShortTaskDTO.fromTask(e));});
+        tasks.forEach(e -> shortTaskDTOS.add(PublicShortTaskDTO.fromTask(e)));
         return shortTaskDTOS;
     }
 
@@ -59,14 +67,16 @@ public class TaskService {
         task.setTaskPublisherId(userId);
         task.setTaskPublishDate(new Date());
         task.setTaskState(Task.TaskState.WAITTING_FOR_RECEIVED);
+        long exp = task.getTaskDeadLineDate().getTime() - System.currentTimeMillis();
+        rabbitSender.sentTaskId(task.getTaskId(), exp);
         accountService.pay(userId, task.getTaskPrice() * task.getMaxReceiversCount());
         taskMapper.insert(task);
     }
 
     /**
      * 为某个任务添加接受者
-     * @param taskId
-     * @throws NoPlaceLeftException
+     * @param taskId 任务ID
+     * @throws NoPlaceLeftException 任务无剩余领取位
      */
     void addReceiver(int taskId, String userName) throws NoPlaceLeftException {
         Task task = taskMapper.loadById(taskId);
@@ -83,13 +93,16 @@ public class TaskService {
 
     /**
      * 为一个任务添加新的提交者
-     * @param taskId
+     * @param taskId 任务id
      */
     void addCommitter(int taskId, String committion) {
         Task task = taskMapper.loadById(taskId);
         task.setCurrentCompleteCount(task.getCurrentCompleteCount() + 1);
         if(task.getCurrentCompleteCount() == task.getMaxReceiversCount()) {
             task.setTaskState(Task.TaskState.WAITTING_FOR_CHECKED);
+            task.setTaskCompleteDate(new Date());
+            long exp = Task.AUTO_COMPLETE_DURATION;
+            rabbitSender.sentTaskIdForAutoComplete(task.getTaskId(), exp);
         }
         task.setResult(task.getResult() + "^^" + committion);
         taskMapper.update(task);
@@ -97,8 +110,12 @@ public class TaskService {
 
     public void checkTask(int taskId){
         Task task = taskMapper.loadById(taskId);
+        if(task.getTaskState() != Task.TaskState.WAITTING_FOR_CHECKED) {
+            return;
+        }
         task.setTaskState(Task.TaskState.COMPLETED_NORMALLY);
         task.setTaskCompleteDate(new Date());
+        accountService.addCredit(task.getTaskPublisherId(), task.getTaskPrice() * (task.getMaxReceiversCount() - task.getCurrentCompleteCount()));
         taskMapper.update(task);
         transactionService.afterTaskCheck(taskId);
     }
@@ -111,6 +128,7 @@ public class TaskService {
         }
         int left = task.getTaskPrice() * (task.getMaxReceiversCount() - task.getCurrentCompleteCount());
         accountService.addCredit(task.getTaskPublisherId(), left);
+        task.setTaskCompleteDate(new Date());
         taskMapper.update(task);
         transactionService.afterTaskCancel(taskId);
     }
@@ -133,8 +151,29 @@ public class TaskService {
             throw new NoSuchTaskExpcetion();
         }
         String userName = userService.getName(task.getTaskPublisherId());
-        TaskDetailOutputDTO dto = TaskDetailOutputDTO.fromNameAndTask(userName, task);
-        return dto;
+        return TaskDetailOutputDTO.fromNameAndTask(userName, task);
+    }
+
+    public void processOverdue(int taskId) {
+        Task task = taskMapper.loadById(taskId);
+        if(task.getTaskState() != Task.TaskState.WAITTING_FOR_COMPLETED ||
+            task.getTaskState() != Task.TaskState.WAITTING_FOR_RECEIVED) {
+            return;
+        }
+        if(task.getCurrentCompleteCount() == 0) {
+            task.setTaskState(Task.TaskState.COMPLETED_NORMALLY);
+        } else {
+            task.setTaskState(Task.TaskState.WAITTING_FOR_CHECKED);
+            long exp = Task.AUTO_COMPLETE_DURATION;
+            rabbitSender.sentTaskIdForAutoComplete(taskId, exp);
+        }
+        task.setTaskCompleteDate(new Date());
+        taskMapper.update(task);
+        transactionService.processOverdue(taskId);
+    }
+
+    public void processAutoComplete(int taskId) {
+        checkTask(taskId);
     }
 
     /**

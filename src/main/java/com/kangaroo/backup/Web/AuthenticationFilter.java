@@ -2,9 +2,9 @@ package com.kangaroo.backup.Web;
 
 import com.kangaroo.backup.Constant.TokenConstant;
 import com.kangaroo.backup.DTO.TokenPreloadDTO;
-import com.kangaroo.backup.Utils.JWTUtils;
+import com.kangaroo.backup.JWT.JWTUtils;
 import com.kangaroo.backup.Utils.MatchUriUtils;
-import com.kangaroo.backup.Utils.RedisUtils;
+import com.kangaroo.backup.Redis.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,12 @@ import java.util.Set;
 @WebFilter(urlPatterns = "/*", filterName = "authenticationFilter")
 public class AuthenticationFilter extends BaseController implements Filter {
 
-    @Autowired
     private RedisUtils redisUtils;
+
+    @Autowired
+    public void setRedisUtils(RedisUtils redisUtils) {
+        this.redisUtils = redisUtils;
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
@@ -67,11 +71,11 @@ public class AuthenticationFilter extends BaseController implements Filter {
                     chain.doFilter(request, response);
                 }
                 else {
-                    httpServletResponse.sendError(403, "登陆信息已失效");
+                    httpServletResponse.sendError(403, "登陆信息已失效，请重新登陆");
                 }
             }
             else {
-                httpServletResponse.sendError(403, "未登陆或登陆信息失效");
+                httpServletResponse.sendError(403, "未登陆或登陆信息过期");
             }
         }
     }

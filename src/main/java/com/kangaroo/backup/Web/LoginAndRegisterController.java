@@ -6,12 +6,11 @@ import com.kangaroo.backup.Domain.User;
 import com.kangaroo.backup.Exception.UserExistException;
 import com.kangaroo.backup.Service.UserService;
 import com.kangaroo.backup.Utils.FormatCheckerUtils;
-import com.kangaroo.backup.Utils.JWTUtils;
+import com.kangaroo.backup.JWT.JWTUtils;
 import com.kangaroo.backup.Utils.JsonUtils;
-import com.kangaroo.backup.Utils.RedisUtils;
+import com.kangaroo.backup.Redis.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +30,12 @@ public class LoginAndRegisterController extends BaseController {
 
     private UserService userService;
 
-    @Autowired
     private RedisUtils redisUtils;
+
+    @Autowired
+    public void setRedisUtils(RedisUtils redisUtils) {
+        this.redisUtils = redisUtils;
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(LoginAndRegisterController.class);
 

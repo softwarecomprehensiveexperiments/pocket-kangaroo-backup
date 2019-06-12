@@ -1,5 +1,6 @@
 package com.kangaroo.backup.Utils;
 
+import com.kangaroo.backup.Redis.RedisUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

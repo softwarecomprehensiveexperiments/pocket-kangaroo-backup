@@ -1,6 +1,7 @@
 package com.kangaroo.backup.DTO;
 
 import com.kangaroo.backup.Domain.User;
+import org.springframework.beans.BeanUtils;
 
 /**
  * DTO class for register operation.
@@ -48,6 +49,8 @@ public class RegisterUserInputDTO {
     }
 
     public User covertToUser() {
-        return new User(phone, name, password, sex);
+        User user =  new User();
+        BeanUtils.copyProperties(this, user);
+        return user;
     }
 }
