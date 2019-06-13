@@ -102,7 +102,7 @@
         FROM
             kangaroo.task AS t,
             kangaroo.questionnaire AS q
-        WHERE t.task_id = question_taskId AND task_completeDate>=#{taskCompleteDate}
+        WHERE t.task_id = q.task_id AND task_completeDate>=#{taskCompleteDate}
     </select>
     <insert id="insert" parameterType="com.kangaroo.backup.Domain.Task">
         INSERT INTO kangaroo.task(task_title, task_deadLineDate, max_receiversCount, task_content, task_price, task_publisherId, task_publishDate, task_type, task_completeDate, task_state,current_receiversCount,current_completeCount, result, receivers)
@@ -133,6 +133,17 @@
         WHERE task_id=#{taskId}
     </delete>
     <select id="loadById" parameterType="int" resultMap="TaskResult">
-        SELECT * FROM kangaroo.task WHERE task_id=#{taskId}
+        SELECT
+            t.*,
+            q.question_id,
+            q.task_id AS question_taskId,
+            q.question_description,
+            q.if_multipleSelect,
+            q.options_count,
+            q.options
+        FROM
+            kangaroo.task AS t,
+            kangaroo.questionnaire AS q
+        WHERE t.task_id = q.task_id AND t.task_id=#{taskId}
     </select>
 </mapper>
