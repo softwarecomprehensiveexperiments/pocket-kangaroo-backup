@@ -8,9 +8,7 @@ import java.util.Date;
  * PO
  */
 @EntityScan
-public class TaskPO extends BaseDomain {
-
-    private static final long serialVersionUID = -4841653072498200773L;
+public class TaskPO {
 
     private int taskId;
 
