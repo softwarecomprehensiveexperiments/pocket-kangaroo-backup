@@ -3,6 +3,14 @@
         PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kangaroo.backup.Domain.Question">
+    <resultMap id="QuestionResult" type="com.kangaroo.backup.Domain.Question">
+        <id column="question_id" property="questionId" jdbcType="INTEGER"/>
+        <result column="task_id" property="taskId" jdbcType="INTEGER"/>
+        <result column="question_description" property="questionDescription" jdbcType="LONGVARCHAR"/>
+        <result column="if_multipleSelect" property="ifMultipleSelect" jdbcType="TINYINT"/>
+        <result column="options_count" property="optionsCount" jdbcType="INTEGER"/>
+        <result column="options" property="options" jdbcType="VARCHAR"/>
+    </resultMap>
     <insert id="saveQuestionnarie" parameterType="java.util.List">
         INSERT INTO kangaroo.questionnaire(task_id, question_description, if_multipleSelect, options_count, options)
         VALUES
@@ -22,4 +30,7 @@
         WHERE question_id=#{questionId}
     </delete>
 
+    <select id="getByTaskId" parameterType="int" resultMap="QuestionResult">
+        SELECT * FROM kangaroo.questionnaire WHERE task_id=#{taskId}
+    </select>
 </mapper>
