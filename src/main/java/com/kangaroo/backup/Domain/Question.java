@@ -14,8 +14,6 @@ public class Question extends BaseDomain{
     @JsonProperty("question_id")
     private int questionId;
 
-    /*是否增加外键以便联合task查询*/
-    //???感觉会出事
     private int taskId;
 
     @JsonProperty("question_description")

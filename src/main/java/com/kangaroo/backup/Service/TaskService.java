@@ -193,6 +193,16 @@ public class TaskService {
         return res;
     }
 
+    private Task getTaskById(int taskId) {
+        List<Task> tasks = taskMapper.loadById(taskId);
+        Task task = tasks.get(0);
+        if(task == null) {
+            return null;
+        }
+        tasks.forEach(e -> {
+
+        });
+    }
     int getAmount(int taskId) {
         return taskMapper.loadById(taskId).getTaskPrice();
     }

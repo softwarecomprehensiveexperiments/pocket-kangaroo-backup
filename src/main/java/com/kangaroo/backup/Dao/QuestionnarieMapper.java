@@ -12,4 +12,9 @@ public interface QuestionnarieMapper {
     /*通过id删除问卷*/
     void deleteQuestionnarie(int questionId);
 
+    /**
+     * NEW
+     */
+    List<Question> getByTaskId(int taskId);
+
 }

@@ -1,13 +1,14 @@
 package com.kangaroo.backup.Domain;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
- * DO class.
+ * PO
  */
-public class Task extends BaseDomain {
+@EntityScan
+public class TaskPO extends BaseDomain {
 
     private static final long serialVersionUID = -4841653072498200773L;
 
@@ -25,8 +26,6 @@ public class Task extends BaseDomain {
 
     private int maxReceiversCount;
 
-    private List<Question> questionnaire;
-
     private int taskPrice;
 
     private int taskPublisherId;
@@ -37,68 +36,13 @@ public class Task extends BaseDomain {
 
     private int currentReceiversCount;
 
-	private int currentCompleteCount;
+    private int currentCompleteCount;
 
-	private String result;
+    private String result;
 
     private String receivers;
 
-    /**
-     * 自动确认完成期限：7天
-     */
-    public static final long AUTO_COMPLETE_DURATION = 7 * 24 * 60 * 60 * 1000;
-
-    public static class TaskType {
-
-        public static final String[] TYPE_CHINESE_SET = {"跑腿", "分享", "调查问卷"};
-
-        public static final int RUN_ERRANDS = 0;
-
-        public static final int RESOURCE_SHARE = 1;
-
-        public static final int SURVEY = 2;
-    }
-
-    public static class TaskState {
-
-        public static final String[] STATE_CHINESE_SET = {"待领取", "等待完成", "等待确认", "已完成", "已取消"};
-
-        public static final int WAITTING_FOR_RECEIVED = 0;
-
-        public static final int WAITTING_FOR_COMPLETED = 1;
-
-        public static final int WAITTING_FOR_CHECKED = 2;
-
-        public static final int COMPLETED_NORMALLY = 3;
-
-        public static final int CANCELED = 4;
-
-        public static final List<Integer> DOING_STATE_SET;
-
-        public static final List<Integer> COMPLETED_STATE_SET;
-
-        public static final List<Integer> ALL_STATE_SET;
-
-        static {
-            DOING_STATE_SET = new LinkedList<>();
-            DOING_STATE_SET.add(TaskState.WAITTING_FOR_RECEIVED);
-            DOING_STATE_SET.add(TaskState.WAITTING_FOR_COMPLETED);
-            DOING_STATE_SET.add(TaskState.WAITTING_FOR_CHECKED);
-
-            COMPLETED_STATE_SET = new LinkedList<>();
-            COMPLETED_STATE_SET.add(TaskState.COMPLETED_NORMALLY);
-
-            ALL_STATE_SET = new LinkedList<>();
-            ALL_STATE_SET.add(TaskState.WAITTING_FOR_RECEIVED);
-            ALL_STATE_SET.add(TaskState.WAITTING_FOR_COMPLETED);
-            ALL_STATE_SET.add(TaskState.WAITTING_FOR_CHECKED);
-            ALL_STATE_SET.add(TaskState.COMPLETED_NORMALLY);
-            ALL_STATE_SET.add(TaskState.CANCELED);
-
-        }
-    }
-
-    public Task() {}
+    public TaskPO() {}
 
     public int getMaxReceiversCount() {
         return maxReceiversCount;
@@ -106,14 +50,6 @@ public class Task extends BaseDomain {
 
     public void setMaxReceiversCount(int maxReceiversCount) {
         this.maxReceiversCount = maxReceiversCount;
-    }
-
-    public List<Question> getQuestionnaire() {
-        return questionnaire;
-    }
-
-    public void setQuestionnaire(List<Question> questionnaire) {
-        this.questionnaire = questionnaire;
     }
 
     public int getTaskPublisherId() {
@@ -228,3 +164,4 @@ public class Task extends BaseDomain {
         this.receivers = receivers;
     }
 }
+

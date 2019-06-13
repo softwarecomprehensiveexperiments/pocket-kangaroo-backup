@@ -14,9 +14,6 @@ public interface TaskMapper {
 
     List<Task> getTaskListByTitle(String taskTitle);
 
-    //错了，taskType是int类型
-    //List<Task> getTaskListByType(String taskType);
-
     //已更正，taskType是int类型
     List<Task> getTaskListByType(int taskType);
 
@@ -33,6 +30,6 @@ public interface TaskMapper {
     /**
      * New
      */
-    Task loadById(int taskId);
+    List<Task> loadById(int taskId);
 
 }
