@@ -1,6 +1,7 @@
 package com.kangaroo.backup.Dao;
 
 import com.kangaroo.backup.Domain.Task;
+import com.kangaroo.backup.Domain.TaskPO;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -10,26 +11,26 @@ import java.util.List;
 public interface TaskMapper {
 
     /*查询，task与questionnarie联合查询*/
-    List<Task> getTaskList();
+    List<TaskPO> getTaskList();
 
-    List<Task> getTaskListByTitle(String taskTitle);
+    List<TaskPO> getTaskListByTitle(String taskTitle);
 
     //已更正，taskType是int类型
-    List<Task> getTaskListByType(int taskType);
+    List<TaskPO> getTaskListByType(int taskType);
 
-    List<Task> getTaskListByPublisher(int taskPublisherId);
+    List<TaskPO> getTaskListByPublisher(int taskPublisherId);
 
-    List<Task> getTaskListByCompleteDate(Date taskCompleteDate);
+    List<TaskPO> getTaskListByCompleteDate(Date taskCompleteDate);
 
-    void insert(Task task);
+    void insert(TaskPO taskpo);
 
-    void update(Task task);
+    void update(TaskPO taskpo);
 
     void delete(int taskId);
 
     /**
      * New
      */
-    List<Task> loadById(int taskId);
+    List<TaskPO> loadById(int taskId);
 
 }
