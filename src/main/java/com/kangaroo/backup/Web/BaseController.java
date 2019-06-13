@@ -2,7 +2,7 @@ package com.kangaroo.backup.Web;
 
 import com.kangaroo.backup.DTO.TokenPreloadDTO;
 import com.kangaroo.backup.Exception.NoCurrentUserException;
-import com.kangaroo.backup.Utils.JWTUtils;
+import com.kangaroo.backup.JWT.JWTUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,9 +12,9 @@ public class BaseController {
      * 获取当前用户ID
      * @param request 当前request
      * @return userId
-     * @throws NoCurrentUserException
+     * @throws NoCurrentUserException 不存在用户的异常
      */
-    public final int getCurrentUserId(HttpServletRequest request) throws NoCurrentUserException {
+    final int getCurrentUserId(HttpServletRequest request) throws NoCurrentUserException {
         String token = request.getHeader("Authorization");
         if(token == null || token.isEmpty()) {
             throw new NoCurrentUserException();

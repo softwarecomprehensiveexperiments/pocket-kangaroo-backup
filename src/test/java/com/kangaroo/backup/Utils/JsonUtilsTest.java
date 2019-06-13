@@ -17,7 +17,7 @@ public class JsonUtilsTest {
         TestObj testObj = new TestObj();
         testObj.id = 2;
         QueryResult<User> queryResult = new QueryResult<>();
-        queryResult.setT(new User("phone", "name2", "123", 1));
+        queryResult.setT(new User());
         queryResult.setSuccess(true);
         queryResult.setDescription("test");
         System.out.println(JsonUtils.objToString(queryResult));

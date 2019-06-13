@@ -38,8 +38,6 @@ public class ShortTaskOutputDTOTest {
         BeanUtils.copyProperties(task, dto);
         System.out.println("--" + dto);
         System.out.println("--" + dto.getTaskId());
-//        System.out.println("--" + dto.getTaskDeadLineDate());
-//        System.out.println("--" + dto.getQuestionnaire());
         System.out.println("--" + dto.getTaskDeadlineDateString());
     }
 }

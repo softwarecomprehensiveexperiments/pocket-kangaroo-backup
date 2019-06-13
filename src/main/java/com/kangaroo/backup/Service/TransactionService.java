@@ -50,10 +50,10 @@ public class TransactionService {
 
     /**
      * 领取任务，创建交易单
-     * @param userId
-     * @param taskId
-     * @throws DuplicateReceiveException
-     * @throws NoPlaceLeftException
+     * @param userId 用户ID
+     * @param taskId 任务ID
+     * @throws DuplicateReceiveException 重复领取异常
+     * @throws NoPlaceLeftException 无剩余领取位异常
      */
     public void createTransaction(int userId, int taskId) throws DuplicateReceiveException, NoPlaceLeftException {
         if(transactionMapper.getTransactionsByUserIdAndTaskId(userId, taskId) != null) {
@@ -71,8 +71,8 @@ public class TransactionService {
 
     /**
      * 提交交易单
-     * @param transactionId
-     * @param committion
+     * @param transactionId 交易单ID
+     * @param committion 提交结果
      */
     public void commitTransaction(int transactionId, String committion) {
         Transaction transaction = transactionMapper.getTransactionById(transactionId);
@@ -88,7 +88,7 @@ public class TransactionService {
 
     /**
      * 用户取消交易单
-     * @param transactionId
+     * @param transactionId 交易单ID
      */
     public void cancelTransaction(int transactionId) {
         Transaction transaction = transactionMapper.getTransactionById(transactionId);
@@ -131,6 +131,17 @@ public class TransactionService {
             }
         });
         return dtos;
+    }
+
+    void processOverdue(int taskId) {
+        List<Transaction> transactions = transactionMapper.getTransactionsByTaskId(taskId);
+        transactions.forEach(e -> {
+            if(e.getTransactionState() == Transaction.TransactionState.DOING) {
+                e.setTransactionState(Transaction.TransactionState.OVERDUE);
+                e.setTransactionCompleteTime(new Date());
+                transactionMapper.updateTransaction(e);
+            }
+        });
     }
 
     void afterTaskCheck(int taskId) {

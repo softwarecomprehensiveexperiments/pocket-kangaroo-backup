@@ -59,6 +59,11 @@ public class Task extends BaseDomain {
      */
     private String receivers;
 
+    /**
+     * 自动确认完成期限：7天
+     */
+    public static final long AUTO_COMPLETE_DURATION = 7 * 24 * 60 * 60 * 1000;
+
     public static class TaskType {
 
         public static final String[] TYPE_CHINESE_SET = {"跑腿", "分享", "调查问卷"};
