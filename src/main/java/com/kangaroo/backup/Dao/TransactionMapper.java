@@ -1,6 +1,7 @@
 package com.kangaroo.backup.Dao;
 
 import com.kangaroo.backup.Domain.Transaction;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface TransactionMapper {
 
     List<Transaction> getTransactionsByTaskId(int taskId);
 
-    Transaction getTransactionsByUserIdAndTaskId(int userId, int taskId);
+    Transaction getTransactionsByUserIdAndTaskId(@Param("userId")int userId, @Param("taskId") int taskId);
 
 
 }

@@ -12,10 +12,14 @@
         <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR"/>
         <result column="task_price" property="taskPrice" jdbcType="INTEGER"/>
         <result column="task_publisherId" property="taskPublisherId" jdbcType="INTEGER"/>
-        <result column="task_publishDate" property="taskPublishDateS" jdbcType="TIMESTAMP"/>
+        <result column="task_publishDate" property="taskPublishDate" jdbcType="TIMESTAMP"/>
         <result column="task_type" property="taskType" jdbcType="VARCHAR"/>
         <result column="task_completeDate" property="taskCompleteDate" jdbcType="TIMESTAMP"/>
         <result column="task_state" property="taskState" jdbcType="INTEGER"/>
+        <result column="current_receiversCount" property="currentReceiversCount" jdbcType="INTEGER"/>
+        <result column="current_completeCount" property="currentCompleteCount" jdbcType="INTEGER"/>
+        <result column="result" property="result" jdbcType="VARCHAR"/>
+        <result column="receivers" property="receivers" jdbcType="VARCHAR"/>
         <collection property="questionnaire" ofType="com.kangaroo.backup.Domain.Question">
             <id column="question_id" property="questionId" jdbcType="INTEGER"/>
             <result column="task_id" property="taskId" jdbcType="INTEGER"/>
@@ -28,81 +32,81 @@
     
     <sql id="Base_column_list">
         task_id, task_title, task_deadLineDate, task_content, task_price, task_publisherId,
-        task_publishDate, task_type, task_completeDate, task_state
+        task_publishDate, task_type, task_completeDate, task_state, current_receiversCount,
+        current_completeCount, result, receivers
     </sql>
     <select id="getTaskList" resultMap="TaskResult">
         SELECT
-        t.*,
-        q.question_id,
-        q.task_id question_taskId,
-        q.question_description,
-        q.if_multipleSelect,
-        q.options_count,
-        q.options
+            t.*,
+            q.question_id,
+            q.task_id AS question_taskId,
+            q.question_description,
+            q.if_multipleSelect,
+            q.options_count,
+            q.options
         FROM
-             kangaroo.task t,
-             kangaroo.questionnaire q
-        WHERE t.task_id = question_taskId
+             kangaroo.task AS t,
+             kangaroo.questionnaire AS q
     </select>
     <select id="getTaskListByTitle" parameterType="String" resultMap="TaskResult">
         SELECT
             t.*,
             q.question_id,
-            q.task_id question_taskId,
+            q.task_id AS question_taskId,
             q.question_description,
             q.if_multipleSelect,
             q.options_count,
             q.options
         FROM
-            kangaroo.task t,
-            kangaroo.questionnaire q
-        WHERE t.task_id = question_taskId AND task_title=#{taskTitle}
+            kangaroo.task AS t,
+            kangaroo.questionnaire AS q
+        WHERE t.task_id = q.task_id AND task_title=#{taskTitle}
     </select>
-    <select id="getTaskListByType" parameterType="String" resultMap="TaskResult">
+    <select id="getTaskListByType" parameterType="int" resultMap="TaskResult">
         SELECT
             t.*,
             q.question_id,
-            q.task_id question_taskId,
+            q.task_id AS question_taskId,
             q.question_description,
             q.if_multipleSelect,
             q.options_count,
             q.options
         FROM
-            kangaroo.task t,
-            kangaroo.questionnaire q
-        WHERE t.task_id = question_taskId AND task_type=#{taskType}
+            kangaroo.task AS t,
+            kangaroo.questionnaire AS q
+        WHERE t.task_id = q.task_id AND task_type=#{taskType}
     </select>
     <select id="getTaskListByPublisher" parameterType="int" resultMap="TaskResult">
         SELECT
             t.*,
             q.question_id,
-            q.task_id question_taskId,
+            q.task_id AS question_taskId,
             q.question_description,
             q.if_multipleSelect,
             q.options_count,
             q.options
         FROM
-            kangaroo.task t,
-            kangaroo.questionnaire q
-        WHERE t.task_id = question_taskId AND task_publisherId=#{taskPublisherId}
+            kangaroo.task AS t,
+            kangaroo.questionnaire AS q
+        WHERE t.task_id = q.task_id AND task_publisherId=#{taskPublisherId}
     </select>
     <select id="getTaskListByCompleteDate" parameterType="Date" resultMap="TaskResult">
         SELECT
             t.*,
             q.question_id,
-            q.task_id question_taskId,
+            q.task_id AS question_taskId,
             q.question_description,
             q.if_multipleSelect,
             q.options_count,
             q.options
         FROM
-            kangaroo.task t,
-            kangaroo.questionnaire q
+            kangaroo.task AS t,
+            kangaroo.questionnaire AS q
         WHERE t.task_id = question_taskId AND task_completeDate>=#{taskCompleteDate}
     </select>
     <insert id="insert" parameterType="com.kangaroo.backup.Domain.Task">
-        INSERT INTO kangaroo.task(task_title, task_deadLineDate, max_receiversCount, task_content, task_price, task_publisherId, task_publishDate, task_type, task_completeDate, task_state)
-        VALUES (#{taskTitle},#{taskDeadLineDate},#{maxReceiversCount},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskPublishDateS},#{taskType},#{taskCompleteDate},#{taskSate})
+        INSERT INTO kangaroo.task(task_title, task_deadLineDate, max_receiversCount, task_content, task_price, task_publisherId, task_publishDate, task_type, task_completeDate, task_state,current_receiversCount,current_completeCount, result, receivers)
+        VALUES (#{taskTitle},#{taskDeadLineDate},#{maxReceiversCount},#{taskContent},#{taskPrice},#{taskPublisherId},#{taskPublishDate},#{taskType},#{taskCompleteDate},#{taskSate},#{currentReceiversCount},#{currentCompleteCount},#{result},#{receivers})
     </insert>
     <update id="update" parameterType="com.kangaroo.backup.Domain.Task">
         UPDATE kangaroo.task
@@ -113,10 +117,14 @@
             <if test="taskContent!=null">task_content=#{taskContent},</if>
             <if test="taskPrice!=null">task_price=#{taskPrice},</if>
             <if test="taskPublisherId!=null">task_publisherId=#{taskPublisherId},</if>
-            <if test="taskPublishDateS!=null">task_publishDate=#{taskPublishDateS},</if>
+            <if test="taskPublishDate!=null">task_publishDate=#{taskPublishDate},</if>
             <if test="taskType!=null">task_type=#{taskType},</if>
             <if test="taskCompleteDate!=null">task_completeDate=#{taskCompleteDate},</if>
             <if test="taskSate!=null">task_state=#{taskSate}</if>
+            <if test="currentReceiversCount!=null">current_receiversCount=#{currentReceiversCount}</if>
+            <if test="currentCompleteCount!=null">current_completeCount=#{currentCompleteCount}</if>
+            <if test="result!=null">result=#{result}</if>
+            <if test="receivers!=null">receivers=#{receivers}</if>
         </set>
         WHERE task_id=#{taskId}
     </update>
@@ -124,4 +132,7 @@
         DELETE FROM kangaroo.task
         WHERE task_id=#{taskId}
     </delete>
+    <select id="loadById" parameterType="int" resultMap="TaskResult">
+        SELECT * FROM kangaroo.task WHERE task_id=#{taskId}
+    </select>
 </mapper>

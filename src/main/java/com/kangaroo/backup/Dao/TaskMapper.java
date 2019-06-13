@@ -17,6 +17,9 @@ public interface TaskMapper {
     //错了，taskType是int类型
     //List<Task> getTaskListByType(String taskType);
 
+    //已更正，taskType是int类型
+    List<Task> getTaskListByType(int taskType);
+
     List<Task> getTaskListByPublisher(int taskPublisherId);
 
     List<Task> getTaskListByCompleteDate(Date taskCompleteDate);
@@ -31,7 +34,6 @@ public interface TaskMapper {
     /**
      * New
      */
-    List<Task> getTaskListByType(int taskType);
     Task loadById(int taskId);
 
 }

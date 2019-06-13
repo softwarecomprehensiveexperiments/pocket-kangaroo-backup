@@ -10,9 +10,10 @@
         <result column="transaction_state" property="transactionState" jdbcType="INTEGER"/>
         <result column="transaction_startTime" property="transactionStartTime" jdbcType="DATE"/>
         <result column="transaction_completeTime" property="transactionCompleteTime" jdbcType="DATE"/>
+        <result column="committion" property="committion" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_column_list">
-        transaction_id, task_id, user_id, transaction_state, transaction_startTime, transaction_completeTime
+        transaction_id, task_id, user_id, transaction_state, transaction_startTime, transaction_completeTime, committion
     </sql>
     <select id="getAllTransaction" resultMap="BaseResultMap">
         SELECT
@@ -25,8 +26,8 @@
         FROM kangaroo.transaction WHERE transaction_id=#{transactionId}
     </select>
     <insert id="insertTransaction" parameterType="com.kangaroo.backup.Domain.Transaction">
-        INSERT INTO kangaroo.transaction(task_id, user_id, transaction_state, transaction_startTime, transaction_completeTime)
-        VALUES (#{taskId},#{userId},#{transactionState},#{transactionStartTime},#{transactionCompleteTime})
+        INSERT INTO kangaroo.transaction(task_id, user_id, transaction_state, transaction_startTime, transaction_completeTime, committion)
+        VALUES (#{taskId},#{userId},#{transactionState},#{transactionStartTime},#{transactionCompleteTime}, #{committion})
     </insert>
     <update id="updateTransaction" parameterType="com.kangaroo.backup.Domain.Transaction">
         UPDATE kangaroo.transaction
@@ -36,6 +37,7 @@
             <if test="transactionState!=null">transaction_state=#{transactionState},</if>
             <if test="transactionStartTime!=null">transaction_startTime=#{transactionStartTime},</if>
             <if test="transactionCompleteTime!=null">transaction_completeTime=#{transactionCompleteTime},</if>
+            <if test="committion!=null">committion=#{committion}</if>
         </set>
         WHERE transaction_id=#{transactionId}
     </update>
@@ -43,4 +45,13 @@
         DELETE FROM kangaroo.transaction
         WHERE transaction_id=#{transactionId}
     </delete>
+    <select id="getTransactionsByUserId" parameterType="int" resultMap="BaseResultMap">
+        SELECT * FROM kangaroo.transaction WHERE user_id=#{userId}
+    </select>
+    <select id="getTransactionsByTaskId" parameterType="int" resultMap="BaseResultMap">
+        SELECT * FROM kangaroo.transaction WHERE task_id=#{taskId}
+    </select>
+    <select id="getTransactionsByUserIdAndTaskId" resultMap="BaseResultMap">
+        SELECT * FROM kangaroo.transaction WHERE user_id=#{userId} AND task_id=#{taskId}
+    </select>
 </mapper>

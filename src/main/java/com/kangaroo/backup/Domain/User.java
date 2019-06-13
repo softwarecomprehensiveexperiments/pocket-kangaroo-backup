@@ -35,6 +35,14 @@ public class User extends BaseDomain {
 
     public User() {}
 
+    /*配合DTO*/
+    public User(String phone, String name, String password, int sex){
+        userPhone = phone;
+        userName = name;
+        userPassword = password;
+        userSex = sex;
+    }
+
     public int getUserId() {
         return userId;
     }

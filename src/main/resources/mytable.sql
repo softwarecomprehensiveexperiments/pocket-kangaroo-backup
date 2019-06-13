@@ -26,9 +26,13 @@ create table task
     task_price        int          not null,
     task_publisherId  int          not null,
     task_publishDate  datetime     not null,
-    task_type     varchar(32)  null,
-    task_completeDate date         not null,
+    task_type int null,
+    task_completeDate date         null,
     task_state        int          null,
+    current_receiversCount int null,
+    current_completeCount int null,
+    result VARCHAR(256) null,
+    receivers VARCHAR(128) null,
     primary key (task_id)
 )engine=InnoDB auto_increment=1 default charset=utf8;
 
@@ -49,6 +53,7 @@ create table transaction
     transaction_state int not null,
     transaction_startTime date not null,
     transaction_completeTime date not null,
+    committion VARCHAR(128) null,
     primary key (transaction_id)
 )engine=InnoDB auto_increment=1 default charset=utf8;
 alter table transaction add foreign key (user_id) references users(user_id);
